@@ -28,10 +28,13 @@ namespace VectorEmbeddingsSimilarityOptimizations
         {
             // Generate float vectors that match dimension size of OpenAI Embeddings
             vectorToCompareTo768Dimensions = GenerateFloatVector(768);
-            testVectors768Dimensions = GenerateFloatVectors(1000000, 768);
+            testVectors768Dimensions = GenerateFloatVectors(NumberOfVectorsToCreate, 768);
             vectorToCompareTo1536Dimensions = GenerateFloatVector(1536);
-            testVectors1536Dimensions = GenerateFloatVectors(1000000, 1536);
+            testVectors1536Dimensions = GenerateFloatVectors(NumberOfVectorsToCreate, 1536);
         }
+
+        [Params(1000000)] //<-- Changes this to determine the amount of vectors to "mimic" a Vector database
+        public int NumberOfVectorsToCreate { get; set; }
 
         private static IEnumerable<VectorScore> TopMatchingVectors(ReadOnlySpan<float> vectorToCompareTo, ReadOnlySpan<float[]> vectors, bool useCosineSimilarity)
         {
