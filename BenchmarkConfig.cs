@@ -11,7 +11,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
         {
             SummaryStyle = SummaryStyle.Default
                 .WithRatioStyle(RatioStyle.Percentage)
-                .WithTimeUnit(Perfolizer.Horology.TimeUnit.Second);
+                .WithTimeUnit(Perfolizer.Horology.TimeUnit.Millisecond);
         }
     }
 }
