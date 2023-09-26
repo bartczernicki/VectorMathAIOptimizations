@@ -16,8 +16,10 @@ namespace VectorEmbeddingsSimilarityOptimizations
     [RankColumn]
     public class Program
     {
-        private float[] vectorToCompareTo;
-        private float[][] testVectors;
+        private float[] vectorToCompareTo768Dimensions;
+        private float[][] testVectors768Dimensions;
+        private float[] vectorToCompareTo1536Dimensions;
+        private float[][] testVectors1536Dimensions;
 
         static void Main(string[] args)
         {
@@ -29,8 +31,10 @@ namespace VectorEmbeddingsSimilarityOptimizations
         public void Setup()
         {
             // Generate float vectors that match dimension size of OpenAI Embeddings
-            vectorToCompareTo = GenerateFloatVector(1536);
-            testVectors = GenerateFloatVectors(1000000, 1536);
+            vectorToCompareTo768Dimensions = GenerateFloatVector(768);
+            testVectors768Dimensions = GenerateFloatVectors(1000000, 768);
+            vectorToCompareTo1536Dimensions = GenerateFloatVector(1536);
+            testVectors1536Dimensions = GenerateFloatVectors(1000000, 1536);
         }
 
         private static IEnumerable<VectorScore> TopMatchingVectors(ReadOnlySpan<float> vectorToCompareTo, ReadOnlySpan<float[]> vectors, bool useCosineSimilarity)
@@ -83,15 +87,27 @@ namespace VectorEmbeddingsSimilarityOptimizations
         }
 
         [Benchmark]
-        public void CosineSimilarityVectors()
+        public void CosineSimilarityVectors768Dimensions()
         {
-            var results = TopMatchingVectors(vectorToCompareTo, testVectors, true);
+            var results = TopMatchingVectors(vectorToCompareTo768Dimensions, testVectors768Dimensions, true);
         }
 
         [Benchmark]
-        public void DotProductVectors()
+        public void DotProductVectors768Dimensions()
         {
-            var results = TopMatchingVectors(vectorToCompareTo, testVectors, false);
+            var results = TopMatchingVectors(vectorToCompareTo768Dimensions, testVectors768Dimensions, false);
+        }
+
+        [Benchmark]
+        public void CosineSimilarityVectors1536Dimensions()
+        {
+            var results = TopMatchingVectors(vectorToCompareTo1536Dimensions, testVectors1536Dimensions, true);
+        }
+
+        [Benchmark]
+        public void DotProductVectors1536Dimensions()
+        {
+            var results = TopMatchingVectors(vectorToCompareTo1536Dimensions, testVectors1536Dimensions, false);
         }
     }
 
