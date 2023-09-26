@@ -1,17 +1,17 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.SemanticKernel.AI.Embeddings.VectorOperations;
 using System.Collections.Concurrent;
 
 namespace VectorEmbeddingsSimilarityOptimizations
 {
     [MemoryDiagnoser(false)]
-    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
-    [RankColumn]
-    [SimpleJob(RuntimeMoniker.Net60, baseline: true)]
-    [SimpleJob(RuntimeMoniker.Net80, baseline: false)]
+    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
+    [SimpleJob(runStrategy: RunStrategy.Monitoring, runtimeMoniker: RuntimeMoniker.Net60, baseline: true, warmupCount: 1)]
+    [SimpleJob(runStrategy: RunStrategy.Monitoring, runtimeMoniker: RuntimeMoniker.Net80, baseline: false, warmupCount: 1)]
+    [Config(typeof(BenchmarkConfig))]
     public class Program
     {
         // Fields
