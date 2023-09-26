@@ -1,19 +1,15 @@
-﻿using System;
-using System.Numerics;
-using System.Runtime.InteropServices;
-using System.Runtime.Intrinsics;
-using Microsoft.SemanticKernel.AI;
-using Microsoft.SemanticKernel.AI.Embeddings.VectorOperations;
-using System.Runtime.InteropServices;
-using BenchmarkDotNet;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
+using Microsoft.SemanticKernel.AI.Embeddings.VectorOperations;
 
 namespace VectorEmbeddingsSimilarityOptimizations
 {
     [MemoryDiagnoser]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
     [RankColumn]
+    [SimpleJob(RuntimeMoniker.Net60, baseline: true)]
+    [SimpleJob(RuntimeMoniker.Net80, baseline: false)]
     public class Program
     {
         private float[] vectorToCompareTo768Dimensions;
@@ -23,7 +19,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Vector Performance Benchmark");
             var summary = BenchmarkRunner.Run(typeof(Program).Assembly);
         }
 
