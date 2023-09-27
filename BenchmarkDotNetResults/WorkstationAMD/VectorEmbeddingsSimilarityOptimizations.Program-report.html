@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>VectorEmbeddingsSimilarityOptimizations.Program-20230927-130507</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.13.8, Windows 10 (10.0.19045.3448/22H2/2022Update)
+AMD Ryzen 9 3900X, 1 CPU, 24 logical and 12 physical cores
+.NET SDK 8.0.100-rc.1.23463.5
+  [Host]     : .NET 6.0.22 (6.0.2223.42425), X64 RyuJIT AVX2
+  Job-XUDDTI : .NET 6.0.22 (6.0.2223.42425), X64 RyuJIT AVX2
+  Job-XCLJET : .NET 8.0.0 (8.0.23.41904), X64 RyuJIT AVX2
+</code></pre>
+<pre><code>RunStrategy=Throughput  WarmupCount=1  
+</code></pre>
+
+<table>
+<thead><tr><th>Method                         </th><th>Runtime</th><th>NumberOfVectorsToCreate</th><th>MultiThreaded</th><th>Mean </th><th>Error</th><th>StdDev</th><th>Ratio</th><th>RatioSD</th><th>Allocated</th><th>Alloc Ratio</th>
+</tr>
+</thead><tbody><tr><td>CosineSimilarityVectors768Dimensions</td><td>.NET 6.0</td><td>1000</td><td>False</td><td>0.3065 ms</td><td>0.0011 ms</td><td>0.0011 ms</td><td>baseline</td><td></td><td>39.27 KB</td><td></td>
+</tr><tr><td>CosineSimilarityVectors768Dimensions</td><td>.NET 8.0</td><td>1000</td><td>False</td><td>0.3024 ms</td><td>0.0017 ms</td><td>0.0014 ms</td><td>-1%</td><td>0.5%</td><td>39.27 KB</td><td>+0%</td>
+</tr><tr><td>DotProductVectors768Dimensions</td><td>.NET 8.0</td><td>1000</td><td>False</td><td>0.1270 ms</td><td>0.0009 ms</td><td>0.0008 ms</td><td>+0%</td><td>0.7%</td><td>39.27 KB</td><td>+0%</td>
+</tr><tr><td>DotProductVectors768Dimensions</td><td>.NET 6.0</td><td>1000</td><td>False</td><td>0.1268 ms</td><td>0.0006 ms</td><td>0.0005 ms</td><td>baseline</td><td></td><td>39.27 KB</td><td></td>
+</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 8.0</td><td>1000</td><td>False</td><td>0.5871 ms</td><td>0.0040 ms</td><td>0.0036 ms</td><td>+1%</td><td>0.5%</td><td>39.27 KB</td><td>-0%</td>
+</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 6.0</td><td>1000</td><td>False</td><td>0.5838 ms</td><td>0.0032 ms</td><td>0.0027 ms</td><td>baseline</td><td></td><td>39.27 KB</td><td></td>
+</tr><tr><td>DotProductVectors1536Dimensions</td><td>.NET 8.0</td><td>1000</td><td>False</td><td>0.2385 ms</td><td>0.0022 ms</td><td>0.0021 ms</td><td>+1%</td><td>0.9%</td><td>39.27 KB</td><td>+0%</td>
+</tr><tr><td>DotProductVectors1536Dimensions</td><td>.NET 6.0</td><td>1000</td><td>False</td><td>0.2366 ms</td><td>0.0020 ms</td><td>0.0018 ms</td><td>baseline</td><td></td><td>39.27 KB</td><td></td>
+</tr><tr><td>CosineSimilarityVectors768Dimensions</td><td>.NET 6.0</td><td>1000</td><td>True</td><td>0.1230 ms</td><td>0.0013 ms</td><td>0.0012 ms</td><td>baseline</td><td></td><td>76.14 KB</td><td></td>
+</tr><tr><td>CosineSimilarityVectors768Dimensions</td><td>.NET 8.0</td><td>1000</td><td>True</td><td>0.1130 ms</td><td>0.0007 ms</td><td>0.0006 ms</td><td>-8%</td><td>0.9%</td><td>76.03 KB</td><td>-0%</td>
+</tr><tr><td>DotProductVectors768Dimensions</td><td>.NET 6.0</td><td>1000</td><td>True</td><td>0.0976 ms</td><td>0.0010 ms</td><td>0.0009 ms</td><td>baseline</td><td></td><td>76.06 KB</td><td></td>
+</tr><tr><td>DotProductVectors768Dimensions</td><td>.NET 8.0</td><td>1000</td><td>True</td><td>0.0927 ms</td><td>0.0010 ms</td><td>0.0010 ms</td><td>-5%</td><td>1.1%</td><td>75.94 KB</td><td>-0%</td>
+</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 6.0</td><td>1000</td><td>True</td><td>0.1603 ms</td><td>0.0013 ms</td><td>0.0012 ms</td><td>baseline</td><td></td><td>78.16 KB</td><td></td>
+</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 8.0</td><td>1000</td><td>True</td><td>0.1535 ms</td><td>0.0012 ms</td><td>0.0011 ms</td><td>-4%</td><td>1.0%</td><td>78.75 KB</td><td>+1%</td>
+</tr><tr><td>DotProductVectors1536Dimensions</td><td>.NET 6.0</td><td>1000</td><td>True</td><td>0.1177 ms</td><td>0.0013 ms</td><td>0.0012 ms</td><td>baseline</td><td></td><td>79.24 KB</td><td></td>
+</tr><tr><td>DotProductVectors1536Dimensions</td><td>.NET 8.0</td><td>1000</td><td>True</td><td>0.1087 ms</td><td>0.0008 ms</td><td>0.0007 ms</td><td>-8%</td><td>1.0%</td><td>78.72 KB</td><td>-1%</td>
+</tr><tr><td>CosineSimilarityVectors768Dimensions</td><td>.NET 8.0</td><td>1000000</td><td>False</td><td>385.1567 ms</td><td>4.8236 ms</td><td>4.2760 ms</td><td>+1%</td><td>1.8%</td><td>39063.09 KB</td><td>-0%</td>
+</tr><tr><td>CosineSimilarityVectors768Dimensions</td><td>.NET 6.0</td><td>1000000</td><td>False</td><td>380.2923 ms</td><td>4.4561 ms</td><td>4.1682 ms</td><td>baseline</td><td></td><td>39064.38 KB</td><td></td>
+</tr><tr><td>DotProductVectors768Dimensions</td><td>.NET 6.0</td><td>1000000</td><td>False</td><td>269.8538 ms</td><td>3.1176 ms</td><td>2.7637 ms</td><td>baseline</td><td></td><td>39063.02 KB</td><td></td>
+</tr><tr><td>DotProductVectors768Dimensions</td><td>.NET 8.0</td><td>1000000</td><td>False</td><td>268.0051 ms</td><td>2.8181 ms</td><td>2.6360 ms</td><td>-1%</td><td>1.4%</td><td>39062.9 KB</td><td>-0%</td>
+</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 8.0</td><td>1000000</td><td>False</td><td>713.6307 ms</td><td>6.8750 ms</td><td>6.4308 ms</td><td>+3%</td><td>1.2%</td><td>39063.09 KB</td><td>-0%</td>
+</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 6.0</td><td>1000000</td><td>False</td><td>696.2044 ms</td><td>7.6118 ms</td><td>7.1201 ms</td><td>baseline</td><td></td><td>39064.38 KB</td><td></td>
+</tr><tr><td>DotProductVectors1536Dimensions</td><td>.NET 8.0</td><td>1000000</td><td>False</td><td>472.8700 ms</td><td>5.8414 ms</td><td>5.4640 ms</td><td>+1%</td><td>1.6%</td><td>39063.09 KB</td><td>-0%</td>
+</tr><tr><td>DotProductVectors1536Dimensions</td><td>.NET 6.0</td><td>1000000</td><td>False</td><td>468.8515 ms</td><td>5.6024 ms</td><td>5.2405 ms</td><td>baseline</td><td></td><td>39064.77 KB</td><td></td>
+</tr><tr><td>CosineSimilarityVectors768Dimensions</td><td>.NET 8.0</td><td>1000000</td><td>True</td><td>191.8403 ms</td><td>1.3087 ms</td><td>1.1601 ms</td><td>+5%</td><td>0.9%</td><td>68433.01 KB</td><td>+4%</td>
+</tr><tr><td>CosineSimilarityVectors768Dimensions</td><td>.NET 6.0</td><td>1000000</td><td>True</td><td>182.2348 ms</td><td>0.8596 ms</td><td>0.8040 ms</td><td>baseline</td><td></td><td>65830.88 KB</td><td></td>
+</tr><tr><td>DotProductVectors768Dimensions</td><td>.NET 8.0</td><td>1000000</td><td>True</td><td>192.0453 ms</td><td>1.6466 ms</td><td>1.5402 ms</td><td>+4%</td><td>1.1%</td><td>69158.41 KB</td><td>+2%</td>
+</tr><tr><td>DotProductVectors768Dimensions</td><td>.NET 6.0</td><td>1000000</td><td>True</td><td>184.8951 ms</td><td>1.4062 ms</td><td>1.3153 ms</td><td>baseline</td><td></td><td>68049.25 KB</td><td></td>
+</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 8.0</td><td>1000000</td><td>True</td><td>289.3509 ms</td><td>3.7399 ms</td><td>3.4983 ms</td><td>+2%</td><td>1.4%</td><td>65833.45 KB</td><td>-3%</td>
+</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 6.0</td><td>1000000</td><td>True</td><td>283.2634 ms</td><td>0.5851 ms</td><td>0.4568 ms</td><td>baseline</td><td></td><td>67881.96 KB</td><td></td>
+</tr><tr><td>DotProductVectors1536Dimensions</td><td>.NET 8.0</td><td>1000000</td><td>True</td><td>291.7917 ms</td><td>3.9913 ms</td><td>3.1162 ms</td><td>+3%</td><td>1.1%</td><td>66377.56 KB</td><td>-2%</td>
+</tr><tr><td>DotProductVectors1536Dimensions</td><td>.NET 6.0</td><td>1000000</td><td>True</td><td>282.6733 ms</td><td>0.8705 ms</td><td>0.8143 ms</td><td>baseline</td><td></td><td>67882.9 KB</td><td></td>
+</tr></tbody></table>
+</body>
+</html>
