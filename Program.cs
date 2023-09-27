@@ -9,8 +9,8 @@ namespace VectorEmbeddingsSimilarityOptimizations
 {
     [MemoryDiagnoser(false)]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
-    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net60, baseline: true)]
-    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80, baseline: false)]
+    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net60, baseline: true, warmupCount: 1)]
+    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80, baseline: false, warmupCount: 1)]
     [Config(typeof(BenchmarkConfig))]
     public class Program
     {
@@ -43,7 +43,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
         [Params(1000, 1000000)] //<-- Changes this to determine the amount of vectors to "mimic" a Vector database
         public int NumberOfVectorsToCreate { get; set; }
 
-        [Params(false, true)] //<-- Changes this to determine the amount of vectors to "mimic" a Vector database
+        [Params(false, true)] //<-- Changes this to determine if to run on a single thread or leverage multiple-threads
         public bool MultiThreaded { get; set; }
 
         private static IEnumerable<VectorScore> TopMatchingVectors(ReadOnlySpan<float> vectorToCompareTo, ReadOnlySpan<float[]> vectors,
@@ -55,19 +55,21 @@ namespace VectorEmbeddingsSimilarityOptimizations
             if (multiThreaded)
             {
                 var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = ProcessorsAvailableAt75Percent };
-                var vectorsArray = vectors.ToArray();
-                var vectorToCompareToArray = vectorToCompareTo.ToArray();
                 var resultsConcurrentBag = new ConcurrentBag<VectorScore>();
+
+                var vectorToCompareToMemory = new ReadOnlyMemory<float>(vectorToCompareTo.ToArray());
+                var vectorsMemory = new ReadOnlyMemory<float[]>(vectors.ToArray());
 
                 Parallel.For(0, numOfVectors, parallelOptions,
                  i =>
                  {
-                     var singleVector = vectorsArray[i];
+                     var singleVector = vectorsMemory.Slice(i, 1).Span[0].AsSpan();
+                     var vectorToCompareToArray = vectorToCompareToMemory.Span;
 
                      var similarityScore = useCosineSimilarity ? CosineSimilarityOperation.CosineSimilarity(vectorToCompareToArray, singleVector) :
                          DotProductOperation.DotProduct(vectorToCompareToArray, singleVector);
                      // convert to float
-                     float[] convertedArray = singleVector;
+                     float[] convertedArray = singleVector.ToArray();
 
                      resultsConcurrentBag.Add(new VectorScore { FloatVector = convertedArray, SimilarityScore = similarityScore });
                  });

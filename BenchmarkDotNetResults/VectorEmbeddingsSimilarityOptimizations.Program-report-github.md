@@ -4,58 +4,58 @@ BenchmarkDotNet v0.13.8, Windows 10 (10.0.19045.3448/22H2/2022Update)
 AMD Ryzen 9 3900X, 1 CPU, 24 logical and 12 physical cores
 .NET SDK 8.0.100-rc.1.23463.5
   [Host]     : .NET 6.0.22 (6.0.2223.42425), X64 RyuJIT AVX2
-  Job-CLJCUA : .NET 6.0.22 (6.0.2223.42425), X64 RyuJIT AVX2
-  Job-JXNYSG : .NET 8.0.0 (8.0.23.41904), X64 RyuJIT AVX2
+  Job-DGAHMZ : .NET 6.0.22 (6.0.2223.42425), X64 RyuJIT AVX2
+  Job-JYKPUP : .NET 8.0.0 (8.0.23.41904), X64 RyuJIT AVX2
 
-RunStrategy=Throughput  
+RunStrategy=Throughput  WarmupCount=1  
 
 ```
-| Method                                | Runtime  | NumberOfVectorsToCreate | MultiThreaded | Mean          | Error      | StdDev      | Median        | Ratio    | RatioSD | Allocated     | Alloc Ratio |
-|-------------------------------------- |--------- |------------------------ |-------------- |--------------:|-----------:|------------:|--------------:|---------:|--------:|--------------:|------------:|
-| CosineSimilarityVectors768Dimensions  | .NET 6.0 | 1000                    | False         |     0.5528 ms |  0.0027 ms |   0.0025 ms |     0.5518 ms | baseline |         |    3062.69 KB |             |
-| CosineSimilarityVectors768Dimensions  | .NET 8.0 | 1000                    | False         |     0.4674 ms |  0.0017 ms |   0.0036 ms |     0.4669 ms |     -15% |    0.5% |    3062.69 KB |         -0% |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| DotProductVectors768Dimensions        | .NET 6.0 | 1000                    | False         |     0.3603 ms |  0.0033 ms |   0.0027 ms |     0.3600 ms | baseline |         |    3062.69 KB |             |
-| DotProductVectors768Dimensions        | .NET 8.0 | 1000                    | False         |     0.2892 ms |  0.0021 ms |   0.0045 ms |     0.2888 ms |     -20% |    1.0% |    3062.69 KB |         +0% |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| CosineSimilarityVectors1536Dimensions | .NET 6.0 | 1000                    | False         |     1.3816 ms |  0.0053 ms |   0.0047 ms |     1.3829 ms | baseline |         |    6062.69 KB |             |
-| CosineSimilarityVectors1536Dimensions | .NET 8.0 | 1000                    | False         |     1.3612 ms |  0.0046 ms |   0.0041 ms |     1.3623 ms |      -1% |    0.4% |    6062.69 KB |         +0% |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| DotProductVectors1536Dimensions       | .NET 6.0 | 1000                    | False         |     1.0705 ms |  0.0034 ms |   0.0030 ms |     1.0704 ms | baseline |         |    6062.69 KB |             |
-| DotProductVectors1536Dimensions       | .NET 8.0 | 1000                    | False         |     1.0548 ms |  0.0056 ms |   0.0053 ms |     1.0538 ms |      -1% |    0.5% |    6062.69 KB |         +0% |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| CosineSimilarityVectors768Dimensions  | .NET 6.0 | 1000                    | True          |     0.1235 ms |  0.0016 ms |   0.0015 ms |     0.1231 ms | baseline |         |      76.13 KB |             |
-| CosineSimilarityVectors768Dimensions  | .NET 8.0 | 1000                    | True          |     0.1205 ms |  0.0010 ms |   0.0009 ms |     0.1207 ms |      -2% |    1.3% |      75.71 KB |         -1% |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| DotProductVectors768Dimensions        | .NET 6.0 | 1000                    | True          |     0.1004 ms |  0.0016 ms |   0.0015 ms |     0.1006 ms | baseline |         |      76.08 KB |             |
-| DotProductVectors768Dimensions        | .NET 8.0 | 1000                    | True          |     0.0908 ms |  0.0007 ms |   0.0006 ms |     0.0909 ms |      -9% |    1.6% |      76.03 KB |         -0% |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| CosineSimilarityVectors1536Dimensions | .NET 6.0 | 1000                    | True          |     0.1661 ms |  0.0016 ms |   0.0015 ms |     0.1658 ms | baseline |         |      78.24 KB |             |
-| CosineSimilarityVectors1536Dimensions | .NET 8.0 | 1000                    | True          |     0.1636 ms |  0.0032 ms |   0.0031 ms |     0.1647 ms |      -2% |    2.3% |      78.63 KB |         +0% |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| DotProductVectors1536Dimensions       | .NET 6.0 | 1000                    | True          |     0.1205 ms |  0.0010 ms |   0.0010 ms |     0.1208 ms | baseline |         |      79.33 KB |             |
-| DotProductVectors1536Dimensions       | .NET 8.0 | 1000                    | True          |     0.1159 ms |  0.0020 ms |   0.0019 ms |     0.1159 ms |      -4% |    1.8% |      78.77 KB |         -1% |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| CosineSimilarityVectors768Dimensions  | .NET 6.0 | 1000000                 | False         | 2,015.8360 ms | 39.7259 ms |  54.3773 ms | 2,032.1744 ms | baseline |         | 3062500.81 KB |             |
-| CosineSimilarityVectors768Dimensions  | .NET 8.0 | 1000000                 | False         |   936.8554 ms |  5.2404 ms |   4.9019 ms |   938.9386 ms |     -53% |    3.4% | 3062500.58 KB |         -0% |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| DotProductVectors768Dimensions        | .NET 6.0 | 1000000                 | False         | 1,868.5756 ms | 37.0778 ms |  51.9779 ms | 1,884.6432 ms | baseline |         | 3062500.81 KB |             |
-| DotProductVectors768Dimensions        | .NET 8.0 | 1000000                 | False         |   788.1315 ms |  3.7800 ms |   3.5358 ms |   787.6049 ms |     -57% |    3.8% | 3062500.58 KB |         -0% |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| CosineSimilarityVectors1536Dimensions | .NET 6.0 | 1000000                 | False         | 3,851.6263 ms | 76.0654 ms | 177.8003 ms | 3,935.0944 ms | baseline |         | 6062500.81 KB |             |
-| CosineSimilarityVectors1536Dimensions | .NET 8.0 | 1000000                 | False         | 1,885.5339 ms | 10.6724 ms |   9.4608 ms | 1,886.7943 ms |     -47% |    3.9% | 6062500.58 KB |         -0% |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| DotProductVectors1536Dimensions       | .NET 6.0 | 1000000                 | False         | 3,616.9977 ms | 71.8515 ms | 141.8279 ms | 3,637.8882 ms | baseline |         | 6062500.81 KB |             |
-| DotProductVectors1536Dimensions       | .NET 8.0 | 1000000                 | False         | 1,618.9111 ms |  7.6547 ms |   6.7857 ms | 1,619.1923 ms |     -53% |    3.3% | 6062500.58 KB |         -0% |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| CosineSimilarityVectors768Dimensions  | .NET 8.0 | 1000000                 | True          |   195.9720 ms |  0.6936 ms |   0.6149 ms |   196.1004 ms |      +6% |    0.5% |   68646.41 KB |         +2% |
-| CosineSimilarityVectors768Dimensions  | .NET 6.0 | 1000000                 | True          |   184.4644 ms |  0.8382 ms |   0.7431 ms |   184.4654 ms | baseline |         |   67367.39 KB |             |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| DotProductVectors768Dimensions        | .NET 8.0 | 1000000                 | True          |   196.3446 ms |  0.5448 ms |   0.5096 ms |   196.2320 ms |      +6% |    0.4% |    66769.1 KB |         -1% |
-| DotProductVectors768Dimensions        | .NET 6.0 | 1000000                 | True          |   185.0679 ms |  0.6136 ms |   0.5439 ms |   185.1226 ms | baseline |         |    67366.8 KB |             |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| CosineSimilarityVectors1536Dimensions | .NET 8.0 | 1000000                 | True          |   292.9724 ms |  4.4237 ms |   4.1379 ms |   294.7284 ms |      +3% |    1.4% |   67369.54 KB |         +2% |
-| CosineSimilarityVectors1536Dimensions | .NET 6.0 | 1000000                 | True          |   284.7661 ms |  0.9821 ms |   0.9187 ms |   284.6882 ms | baseline |         |   66090.27 KB |             |
-|                                       |          |                         |               |               |            |             |               |          |         |               |             |
-| DotProductVectors1536Dimensions       | .NET 8.0 | 1000000                 | True          |   293.5293 ms |  4.6564 ms |   4.3556 ms |   295.5763 ms |      +3% |    1.6% |   66857.63 KB |         -0% |
-| DotProductVectors1536Dimensions       | .NET 6.0 | 1000000                 | True          |   284.8714 ms |  0.7499 ms |   0.7015 ms |   285.0104 ms | baseline |         |   66859.14 KB |             |
+| Method                                | Runtime  | NumberOfVectorsToCreate | MultiThreaded | Mean          | Error      | StdDev      | Median        | Ratio    | RatioSD | Allocated  | Alloc Ratio |
+|-------------------------------------- |--------- |------------------------ |-------------- |--------------:|-----------:|------------:|--------------:|---------:|--------:|-----------:|------------:|
+| CosineSimilarityVectors768Dimensions  | .NET 6.0 | 1000                    | False         |     0.5507 ms |  0.0019 ms |   0.0017 ms |     0.5508 ms | baseline |         |    2.99 MB |             |
+| CosineSimilarityVectors768Dimensions  | .NET 8.0 | 1000                    | False         |     0.4667 ms |  0.0020 ms |   0.0050 ms |     0.4663 ms |     -15% |    0.8% |    2.99 MB |         -0% |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| DotProductVectors768Dimensions        | .NET 6.0 | 1000                    | False         |     0.3582 ms |  0.0021 ms |   0.0016 ms |     0.3582 ms | baseline |         |    2.99 MB |             |
+| DotProductVectors768Dimensions        | .NET 8.0 | 1000                    | False         |     0.2879 ms |  0.0019 ms |   0.0041 ms |     0.2873 ms |     -20% |    1.0% |    2.99 MB |         +0% |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| CosineSimilarityVectors1536Dimensions | .NET 6.0 | 1000                    | False         |     1.3702 ms |  0.0068 ms |   0.0063 ms |     1.3680 ms | baseline |         |    5.92 MB |             |
+| CosineSimilarityVectors1536Dimensions | .NET 8.0 | 1000                    | False         |     1.3635 ms |  0.0064 ms |   0.0060 ms |     1.3660 ms |      -0% |    0.7% |    5.92 MB |         +0% |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| DotProductVectors1536Dimensions       | .NET 6.0 | 1000                    | False         |     1.0759 ms |  0.0054 ms |   0.0048 ms |     1.0760 ms | baseline |         |    5.92 MB |             |
+| DotProductVectors1536Dimensions       | .NET 8.0 | 1000                    | False         |     1.0496 ms |  0.0038 ms |   0.0033 ms |     1.0497 ms |      -2% |    0.6% |    5.92 MB |         -0% |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| CosineSimilarityVectors768Dimensions  | .NET 8.0 | 1000                    | True          |     2.4520 ms |  0.0486 ms |   0.1107 ms |     2.4410 ms |     +20% |    8.1% |    3.03 MB |         +0% |
+| CosineSimilarityVectors768Dimensions  | .NET 6.0 | 1000                    | True          |     2.0383 ms |  0.0464 ms |   0.1369 ms |     2.0515 ms | baseline |         |    3.03 MB |             |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| DotProductVectors768Dimensions        | .NET 8.0 | 1000                    | True          |     2.4291 ms |  0.0478 ms |   0.0933 ms |     2.4121 ms |     +22% |    6.5% |    3.03 MB |         +0% |
+| DotProductVectors768Dimensions        | .NET 6.0 | 1000                    | True          |     2.0079 ms |  0.0399 ms |   0.1037 ms |     2.0170 ms | baseline |         |    3.03 MB |             |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| CosineSimilarityVectors1536Dimensions | .NET 8.0 | 1000                    | True          |     5.5936 ms |  0.1104 ms |   0.2399 ms |     5.6296 ms |     +30% |    7.1% |    5.97 MB |         +0% |
+| CosineSimilarityVectors1536Dimensions | .NET 6.0 | 1000                    | True          |     4.2946 ms |  0.0866 ms |   0.2553 ms |     4.2653 ms | baseline |         |    5.96 MB |             |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| DotProductVectors1536Dimensions       | .NET 8.0 | 1000                    | True          |     5.5974 ms |  0.1109 ms |   0.2240 ms |     5.5465 ms |     +39% |    6.9% |    5.97 MB |         +0% |
+| DotProductVectors1536Dimensions       | .NET 6.0 | 1000                    | True          |     4.0441 ms |  0.0809 ms |   0.1906 ms |     4.0473 ms | baseline |         |    5.96 MB |             |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| CosineSimilarityVectors768Dimensions  | .NET 6.0 | 1000000                 | False         | 1,988.3481 ms | 39.5738 ms |  81.7268 ms | 2,029.6390 ms | baseline |         | 2990.72 MB |             |
+| CosineSimilarityVectors768Dimensions  | .NET 8.0 | 1000000                 | False         |   922.1955 ms |  5.9462 ms |   5.5620 ms |   923.2776 ms |     -51% |    5.0% | 2990.72 MB |         -0% |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| DotProductVectors768Dimensions        | .NET 6.0 | 1000000                 | False         | 1,816.0028 ms | 35.7660 ms |  69.7588 ms | 1,841.8219 ms | baseline |         | 2990.72 MB |             |
+| DotProductVectors768Dimensions        | .NET 8.0 | 1000000                 | False         |   797.4363 ms |  4.8566 ms |   4.3053 ms |   796.8552 ms |     -54% |    5.5% | 2990.72 MB |         -0% |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| CosineSimilarityVectors1536Dimensions | .NET 6.0 | 1000000                 | False         | 3,896.5549 ms | 77.8825 ms | 228.4158 ms | 4,007.4647 ms | baseline |         | 5920.41 MB |             |
+| CosineSimilarityVectors1536Dimensions | .NET 8.0 | 1000000                 | False         | 1,909.5747 ms | 19.4923 ms |  17.2794 ms | 1,908.5775 ms |     -44% |    4.0% | 5920.41 MB |         -0% |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| DotProductVectors1536Dimensions       | .NET 6.0 | 1000000                 | False         | 3,583.7732 ms | 73.8271 ms | 217.6810 ms | 3,705.0289 ms | baseline |         | 5920.41 MB |             |
+| DotProductVectors1536Dimensions       | .NET 8.0 | 1000000                 | False         | 1,643.0149 ms | 20.5764 ms |  18.2405 ms | 1,637.9514 ms |     -48% |    3.9% | 5920.41 MB |         -0% |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| CosineSimilarityVectors768Dimensions  | .NET 6.0 | 1000000                 | True          | 2,064.3001 ms | 27.3199 ms |  22.8133 ms | 2,059.6826 ms | baseline |         | 3016.37 MB |             |
+| CosineSimilarityVectors768Dimensions  | .NET 8.0 | 1000000                 | True          | 1,524.7533 ms | 11.3599 ms |  10.6260 ms | 1,522.9857 ms |     -26% |    1.1% | 3017.37 MB |         +0% |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| DotProductVectors768Dimensions        | .NET 6.0 | 1000000                 | True          | 2,169.8070 ms | 42.8760 ms |  47.6566 ms | 2,171.7611 ms | baseline |         | 3017.87 MB |             |
+| DotProductVectors768Dimensions        | .NET 8.0 | 1000000                 | True          | 1,472.3576 ms |  6.2432 ms |   5.8399 ms | 1,472.5154 ms |     -32% |    2.4% | 3017.49 MB |         -0% |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| CosineSimilarityVectors1536Dimensions | .NET 6.0 | 1000000                 | True          | 4,057.7078 ms | 79.3809 ms | 100.3914 ms | 4,030.1274 ms | baseline |         | 5947.31 MB |             |
+| CosineSimilarityVectors1536Dimensions | .NET 8.0 | 1000000                 | True          | 2,865.1262 ms | 21.0770 ms |  19.7154 ms | 2,869.4259 ms |     -29% |    2.6% | 5946.31 MB |         -0% |
+|                                       |          |                         |               |               |            |             |               |          |         |            |             |
+| DotProductVectors1536Dimensions       | .NET 6.0 | 1000000                 | True          | 3,984.7730 ms | 72.0496 ms |  60.1647 ms | 3,961.8224 ms | baseline |         | 5948.12 MB |             |
+| DotProductVectors1536Dimensions       | .NET 8.0 | 1000000                 | True          | 2,787.1450 ms | 15.2296 ms |  14.2457 ms | 2,790.6035 ms |     -30% |    1.8% | 5946.81 MB |         -0% |
