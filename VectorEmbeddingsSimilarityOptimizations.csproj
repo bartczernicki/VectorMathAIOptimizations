@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.SemanticKernel.Core" Version="0.24.230918.1-preview" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BenchmarkDotNetResults\MacBookProMax2\" />
+  </ItemGroup>
+
 </Project>
