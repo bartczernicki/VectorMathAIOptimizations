@@ -31,7 +31,10 @@ namespace VectorEmbeddingsSimilarityOptimizations
         [GlobalSetup]
         public void Setup()
         {
-            // Generate float vectors that match dimension size of OpenAI Embeddings
+            // Generate float vectors that match dimension size of Open-Source and OpenAI Embeddings
+            // MTEB Database: https://huggingface.co/spaces/mteb/leaderboard 
+            // 768 Dimensions is a popular embeddings dimension size for several leaderboard open-source models
+            // 1536 Dimensions is the size of the ada-002 model for OpenAI/Azure OpenAI embeddings
             vectorToCompareTo768Dimensions = GenerateFloatVector(768);
             testVectors768Dimensions = GenerateFloatVectors(NumberOfVectorsToCreate, 768);
             vectorToCompareTo1536Dimensions = GenerateFloatVector(1536);
@@ -40,10 +43,11 @@ namespace VectorEmbeddingsSimilarityOptimizations
             ProcessorsAvailableAt75Percent = (int)(0.75 * Environment.ProcessorCount);
         }
 
-        [Params(1000, 1000000)] //<-- Changes this to determine the amount of vectors to "mimic" a Vector database
+        [Params(1000, 1000000)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, large)
+        // 1mil embeddings is roughly 700,000-1mil document pages with a decent amount of text present
         public int NumberOfVectorsToCreate { get; set; }
 
-        [Params(false, true)] //<-- Changes this to determine if to run on a single thread or leverage multiple-threads
+        [Params(false, true)] //<-- Change this to determine if to run on a single thread or leverage 75% of available threads 
         public bool MultiThreaded { get; set; }
 
         private static IEnumerable<VectorScore> TopMatchingVectors(ReadOnlySpan<float> vectorToCompareTo, ReadOnlySpan<float[]> vectors,
@@ -55,8 +59,11 @@ namespace VectorEmbeddingsSimilarityOptimizations
             if (multiThreaded)
             {
                 var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = ProcessorsAvailableAt75Percent };
-                var resultsConcurrentBag = new ConcurrentBag<VectorScore>();
+                var resultsConcurrentBag = new ConcurrentBag<VectorScore>(); // <- use concurrent collection for parallel loop
+                // You can use an array copy in this simple scenario to make this faster, but most scenarios will share data
 
+                // Need to cast these as ReadOnlyMemory to avoid ref struct error or do any unsafe pointers
+                // This probably can be optimized
                 var vectorToCompareToMemory = new ReadOnlyMemory<float>(vectorToCompareTo.ToArray());
                 var vectorsMemory = new ReadOnlyMemory<float[]>(vectors.ToArray());
 
@@ -68,10 +75,8 @@ namespace VectorEmbeddingsSimilarityOptimizations
 
                      var similarityScore = useCosineSimilarity ? CosineSimilarityOperation.CosineSimilarity(vectorToCompareToArray, singleVector) :
                          DotProductOperation.DotProduct(vectorToCompareToArray, singleVector);
-                     // convert to float
-                     float[] convertedArray = singleVector.ToArray();
 
-                     resultsConcurrentBag.Add(new VectorScore { FloatVector = convertedArray, SimilarityScore = similarityScore });
+                     resultsConcurrentBag.Add(new VectorScore { VectorIndex = i, SimilarityScore = similarityScore });
                  });
 
                 return resultsConcurrentBag.OrderByDescending(a => a.SimilarityScore).Take(50);
@@ -80,13 +85,12 @@ namespace VectorEmbeddingsSimilarityOptimizations
             {
                 for (var i = 0; i != numOfVectors; i++)
                 {
-                    ReadOnlySpan<float> singleVector = vectors.Slice(i, 1)[0].AsSpan();
+                    ReadOnlySpan<float> singleVector = vectors.Slice(i, 1)[0];
+
                     var similarityScore = useCosineSimilarity ? CosineSimilarityOperation.CosineSimilarity(vectorToCompareTo, singleVector) :
                         DotProductOperation.DotProduct(vectorToCompareTo, singleVector);
-                    // convert to float
-                    float[] convertedArray = singleVector.ToArray();
 
-                    results.Add(new VectorScore { FloatVector = convertedArray, SimilarityScore = similarityScore });
+                    results.Add(new VectorScore { VectorIndex = i, SimilarityScore = similarityScore });
                 }
 
                 return results.OrderByDescending(a => a.SimilarityScore).Take(50);
