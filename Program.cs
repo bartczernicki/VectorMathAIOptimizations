@@ -15,10 +15,10 @@ namespace VectorEmbeddingsSimilarityOptimizations
     public class Program
     {
         // Fields
-        private float[] vectorToCompareTo768Dimensions;
-        private float[][] testVectors768Dimensions;
-        private float[] vectorToCompareTo1536Dimensions;
-        private float[][] testVectors1536Dimensions;
+        private float[]? vectorToCompareTo768Dimensions;
+        private float[][]? testVectors768Dimensions;
+        private float[]? vectorToCompareTo1536Dimensions;
+        private float[][]? testVectors1536Dimensions;
         // Processor Count (at 75%)
         private static int ProcessorsAvailableAt75Percent = 0;
 
