@@ -4,13 +4,14 @@ using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 using Microsoft.SemanticKernel.AI.Embeddings.VectorOperations;
 using System.Collections.Concurrent;
+using System.Numerics.Tensors;
 
 namespace VectorEmbeddingsSimilarityOptimizations
 {
     [MemoryDiagnoser(false)]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
-    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net60, baseline: true)]
-    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80, baseline: false)]
+    //[SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net60, baseline: true)]
+    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80, baseline: true)]
     [Config(typeof(BenchmarkConfig))]
     public class Program
     {
@@ -43,7 +44,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
             ProcessorsAvailableAt75Percent = (int)(0.75 * Environment.ProcessorCount);
         }
 
-        [Params(1000, 1000000)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, large)
+        [Params(1000, 100000)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, large)
         // 1mil embeddings is roughly 700,000-1mil document pages with a decent amount of text present
         public int NumberOfVectorsToCreate { get; set; }
 
@@ -73,8 +74,9 @@ namespace VectorEmbeddingsSimilarityOptimizations
                      var singleVector = vectorsMemory.Slice(i, 1).Span[0].AsSpan();
                      var vectorToCompareToArray = vectorToCompareToMemory.Span;
 
-                     var similarityScore = useCosineSimilarity ? CosineSimilarityOperation.CosineSimilarity(vectorToCompareToArray, singleVector) :
-                         DotProductOperation.DotProduct(vectorToCompareToArray, singleVector);
+                     
+                     var similarityScore = useCosineSimilarity ? TensorPrimitives.CosineSimilarity(vectorToCompareToArray, singleVector) :
+                         TensorPrimitives.Dot(vectorToCompareToArray, singleVector);
 
                      resultsConcurrentBag.Add(new VectorScore { VectorIndex = i, SimilarityScore = similarityScore });
                  });
@@ -87,8 +89,8 @@ namespace VectorEmbeddingsSimilarityOptimizations
                 {
                     ReadOnlySpan<float> singleVector = vectors.Slice(i, 1)[0];
 
-                    var similarityScore = useCosineSimilarity ? CosineSimilarityOperation.CosineSimilarity(vectorToCompareTo, singleVector) :
-                        DotProductOperation.DotProduct(vectorToCompareTo, singleVector);
+                    var similarityScore = useCosineSimilarity ? TensorPrimitives.CosineSimilarity(vectorToCompareTo, singleVector) :
+                        TensorPrimitives.Dot(vectorToCompareTo, singleVector);
 
                     results.Add(new VectorScore { VectorIndex = i, SimilarityScore = similarityScore });
                 }
