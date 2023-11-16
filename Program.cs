@@ -2,7 +2,6 @@
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
-using Microsoft.SemanticKernel.AI.Embeddings.VectorOperations;
 using System.Collections.Concurrent;
 using System.Numerics.Tensors;
 
@@ -10,7 +9,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
 {
     [MemoryDiagnoser(false)]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
-    //[SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net60, baseline: true)]
+    //[SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net70, baseline: false)]
     [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80, baseline: true)]
     [Config(typeof(BenchmarkConfig))]
     public class Program
@@ -20,7 +19,8 @@ namespace VectorEmbeddingsSimilarityOptimizations
         private float[][]? testVectors768Dimensions;
         private float[]? vectorToCompareTo1536Dimensions;
         private float[][]? testVectors1536Dimensions;
-        // Processor Count (at 75%)
+
+        // Processor Count (set at 75% in code)
         private static int ProcessorsAvailableAt75Percent = 0;
 
         static void Main(string[] args)
