@@ -4,6 +4,7 @@ using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 using System.Collections.Concurrent;
 using System.Numerics.Tensors;
+using System.Runtime.Intrinsics;
 
 namespace VectorEmbeddingsSimilarityOptimizations
 {
@@ -26,6 +27,12 @@ namespace VectorEmbeddingsSimilarityOptimizations
         static void Main(string[] args)
         {
             Console.WriteLine("Vector Performance Benchmark");
+
+            #if NET8_0_OR_GREATER
+            Console.WriteLine("AVX-256: " + Vector256.IsHardwareAccelerated);
+            Console.WriteLine("AVX-512: " + Vector512.IsHardwareAccelerated);
+            #endif
+
             var summary = BenchmarkRunner.Run(typeof(Program).Assembly);
         }
 
