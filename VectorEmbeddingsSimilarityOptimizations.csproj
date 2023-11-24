@@ -2,15 +2,17 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net6.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64</Platforms>
+	<Optimize>true</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.10" />
-    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta7" />
-    <PackageReference Include="Microsoft.SemanticKernel.Core" Version="1.0.0-beta7" />
+    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.SemanticKernel.Core" Version="1.0.0-beta8" />
   </ItemGroup>
 
 </Project>
