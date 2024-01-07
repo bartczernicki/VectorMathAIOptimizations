@@ -13,6 +13,7 @@
     <PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-rc4" />
     <PackageReference Include="Microsoft.SemanticKernel.Core" Version="1.0.0-rc4" />
+    <PackageReference Include="System.Numerics.Tensors" Version="8.0.0" />
   </ItemGroup>
 
 </Project>
