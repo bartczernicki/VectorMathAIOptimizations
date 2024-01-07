@@ -12,7 +12,7 @@
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-beta8" />
-    <PackageReference Include="Microsoft.SemanticKernel.Core" Version="1.0.0-beta8" />
+    <PackageReference Include="Microsoft.SemanticKernel.Core" Version="1.0.0-rc1" />
   </ItemGroup>
 
 </Project>
