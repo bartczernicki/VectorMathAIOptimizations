@@ -30,10 +30,11 @@ namespace VectorEmbeddingsSimilarityOptimizations
         {
             Console.WriteLine("Vector Performance Benchmark");
 
-            #if NET8_0_OR_GREATER
+        #if NET8_0_OR_GREATER
+            Console.WriteLine("AVX-128: " + Vector128.IsHardwareAccelerated.ToString());
             Console.WriteLine("AVX-256: " + Vector256.IsHardwareAccelerated.ToString());
             Console.WriteLine("AVX-512: " + Vector512.IsHardwareAccelerated.ToString());
-            #endif
+        #endif
 
             //var summary = BenchmarkRunner.Run(typeof(Program).Assembly);
             var summary = BenchmarkRunner.Run<Program>();
