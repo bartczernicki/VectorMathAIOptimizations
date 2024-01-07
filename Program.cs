@@ -5,6 +5,8 @@ using BenchmarkDotNet.Running;
 using System.Collections.Concurrent;
 using System.Numerics.Tensors;
 using System.Runtime.Intrinsics;
+using Microsoft.SemanticKernel;
+
 
 namespace VectorEmbeddingsSimilarityOptimizations
 {
