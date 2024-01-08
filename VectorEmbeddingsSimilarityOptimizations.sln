@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorEmbeddingsSimilarityO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions", "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions.csproj", "{692C9EA6-E825-4043-B20B-B855F0ACAFFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread", "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread.csproj", "{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,14 @@ Global
 		{692C9EA6-E825-4043-B20B-B855F0ACAFFB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{692C9EA6-E825-4043-B20B-B855F0ACAFFB}.Release|x64.ActiveCfg = Release|Any CPU
 		{692C9EA6-E825-4043-B20B-B855F0ACAFFB}.Release|x64.Build.0 = Release|Any CPU
+		{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}.Debug|x64.Build.0 = Debug|Any CPU
+		{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}.Release|x64.ActiveCfg = Release|Any CPU
+		{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

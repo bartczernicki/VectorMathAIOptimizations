@@ -8,7 +8,7 @@ namespace VectorEmbeddingsSimilarityOptimizations.Util
     public class BenchmarkConfig : ManualConfig
     {
         // Processor Count (set at 75% in code)
-        public static int ProcessorsAvailableAt75Percent = 0;
+        public static int ProcessorsAvailableAt75Percent = (int)(0.75 * Environment.ProcessorCount);
 
         public BenchmarkConfig()
         {
