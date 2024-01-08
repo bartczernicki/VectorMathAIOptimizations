@@ -21,6 +21,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
         private float[]? vectorToCompareTo1536Dimensions;
         private float[][]? testVectors1536Dimensions;
 
+
         // Processor Count (set at 75% in code)
         private static int ProcessorsAvailableAt75Percent = 0;
 
