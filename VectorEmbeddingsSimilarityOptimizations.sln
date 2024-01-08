@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorEmbeddingsSimilarityO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread", "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread.csproj", "{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear", "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear.csproj", "{C567E949-8BF2-4524-8565-4799816EC2C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,14 @@ Global
 		{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}.Release|x64.ActiveCfg = Release|Any CPU
 		{61E1207C-507D-4D3E-ACB9-DF59C94A19F9}.Release|x64.Build.0 = Release|Any CPU
+		{C567E949-8BF2-4524-8565-4799816EC2C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C567E949-8BF2-4524-8565-4799816EC2C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C567E949-8BF2-4524-8565-4799816EC2C2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C567E949-8BF2-4524-8565-4799816EC2C2}.Debug|x64.Build.0 = Debug|Any CPU
+		{C567E949-8BF2-4524-8565-4799816EC2C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C567E949-8BF2-4524-8565-4799816EC2C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C567E949-8BF2-4524-8565-4799816EC2C2}.Release|x64.ActiveCfg = Release|Any CPU
+		{C567E949-8BF2-4524-8565-4799816EC2C2}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

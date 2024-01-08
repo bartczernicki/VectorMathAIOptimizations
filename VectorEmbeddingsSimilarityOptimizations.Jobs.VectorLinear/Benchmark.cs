@@ -4,7 +4,7 @@ using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
 
-namespace VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation
+namespace VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear
 {
     [MemoryDiagnoser(true)]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
@@ -17,11 +17,10 @@ namespace VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation
         [GlobalSetup]
         public void Setup()
         {
-            this.vectors = new Util.Vectors(NumberOfVectorsToCreate);    
-
+            this.vectors = new Util.Vectors(NumberOfVectorsToCreate);
         }
 
-        [Params(1000)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, large)
+        [Params(100, 1000, 10000, 100000)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, medium, large)
         // 1mil embeddings is roughly 700,000-1mil document paragraphs/phrases with a decent amount of text present
         public int NumberOfVectorsToCreate { get; set; }
 
@@ -29,12 +28,6 @@ namespace VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation
         public void CosineSimilarityVectors1536Dimensions()
         {
             var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, false);
-        }
-
-        [Benchmark]
-        public void DotProductVectors1536Dimensions()
-        {
-            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, false, false);
         }
     }
 }
