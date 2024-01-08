@@ -5,16 +5,19 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!--<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\**" />
+    <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\**" />
+    <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\**" />
+    <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
   </ItemGroup>
 
@@ -25,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation.csproj" />
+    <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions.csproj" />
     <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Util\VectorEmbeddingsSimilarityOptimizations.Util.csproj" />
   </ItemGroup>
 

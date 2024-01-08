@@ -6,24 +6,23 @@ namespace VectorEmbeddingsSimilarityOptimizations
 {
     public class Program
     {
-        private Util.Vectors? vectors;
-
-        // Processor Count (set at 75% in code)
-        //private static int ProcessorsAvailableAt75Percent = Util.BenchmarkConfig.ProcessorsAvailableAt75Percent;
-
         static void Main(string[] args)
         {
             Console.WriteLine("Vector Performance Benchmark");
 
-        #if NET8_0_OR_GREATER
-            Console.WriteLine("AVX-128: " + Vector128.IsHardwareAccelerated.ToString());
-            Console.WriteLine("AVX-256: " + Vector256.IsHardwareAccelerated.ToString());
-            Console.WriteLine("AVX-512: " + Vector512.IsHardwareAccelerated.ToString());
-        #endif
+            #if NET8_0_OR_GREATER
+                Console.WriteLine("AVX-128: " + Vector128.IsHardwareAccelerated.ToString());
+                Console.WriteLine("AVX-256: " + Vector256.IsHardwareAccelerated.ToString());
+                Console.WriteLine("AVX-512: " + Vector512.IsHardwareAccelerated.ToString());
+            #endif
 
-            //var summary = BenchmarkRunner.Run(typeof(Program).Assembly);
-            var summary = BenchmarkRunner.Run<Jobs.VectorCalculation.Benchmark>();
-            // print results
+            // Benchmark - Vector Calculation comparison of Cosine Similarity vs Dot Product
+            // var summary = BenchmarkRunner.Run<Jobs.VectorCalculation.Benchmark>();
+
+            // Benchmark - Vector Dimensions comparison of 768 vs 1536 Dimensions
+            var summary = BenchmarkRunner.Run<Jobs.VectorDimensions.Benchmark>();
+
+            // Print Benchmark results
             Console.WriteLine(summary.ToString());
         }
 

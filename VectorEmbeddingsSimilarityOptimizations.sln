@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorEmbeddingsSimilarityO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorEmbeddingsSimilarityOptimizations.Util", "VectorEmbeddingsSimilarityOptimizations.Util\VectorEmbeddingsSimilarityOptimizations.Util.csproj", "{BA1EFFA0-0124-47E6-BF91-547F99D3CA91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation", "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation.csproj", "{7F6C0D33-E890-4B9C-BA7F-7F1AAE2ADDD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation", "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation.csproj", "{7F6C0D33-E890-4B9C-BA7F-7F1AAE2ADDD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions", "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions.csproj", "{692C9EA6-E825-4043-B20B-B855F0ACAFFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,14 @@ Global
 		{7F6C0D33-E890-4B9C-BA7F-7F1AAE2ADDD0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F6C0D33-E890-4B9C-BA7F-7F1AAE2ADDD0}.Release|x64.ActiveCfg = Release|Any CPU
 		{7F6C0D33-E890-4B9C-BA7F-7F1AAE2ADDD0}.Release|x64.Build.0 = Release|Any CPU
+		{692C9EA6-E825-4043-B20B-B855F0ACAFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692C9EA6-E825-4043-B20B-B855F0ACAFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692C9EA6-E825-4043-B20B-B855F0ACAFFB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{692C9EA6-E825-4043-B20B-B855F0ACAFFB}.Debug|x64.Build.0 = Debug|Any CPU
+		{692C9EA6-E825-4043-B20B-B855F0ACAFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692C9EA6-E825-4043-B20B-B855F0ACAFFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692C9EA6-E825-4043-B20B-B855F0ACAFFB}.Release|x64.ActiveCfg = Release|Any CPU
+		{692C9EA6-E825-4043-B20B-B855F0ACAFFB}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
