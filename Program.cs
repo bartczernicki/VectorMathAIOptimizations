@@ -16,12 +16,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
     [Config(typeof(VectorEmbeddingsSimilarityOptimizations.Util.BenchmarkConfig))]
     public class Program
     {
-        // Fields
-        private static float[]? vectorToCompareTo768Dimensions;
-        private static float[][]? testVectors768Dimensions;
-        private static float[]? vectorToCompareTo1536Dimensions;
-        private static float[][]? testVectors1536Dimensions;
-
+        private Util.Vectors? vectors;
 
         // Processor Count (set at 75% in code)
         private static int ProcessorsAvailableAt75Percent = Util.BenchmarkConfig.ProcessorsAvailableAt75Percent;
@@ -49,10 +44,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
             // MTEB Database: https://huggingface.co/spaces/mteb/leaderboard 
             // 768 Dimensions is a popular embeddings dimension size for several leaderboard open-source models
             // 1536 Dimensions is the size of the ada-002 model for OpenAI/Azure OpenAI embeddings
-            vectorToCompareTo768Dimensions = GenerateFloatVector(768);
-            testVectors768Dimensions = GenerateFloatVectors(NumberOfVectorsToCreate, 768);
-            vectorToCompareTo1536Dimensions = GenerateFloatVector(1536);
-            testVectors1536Dimensions = GenerateFloatVectors(NumberOfVectorsToCreate, 1536);
+            this.vectors = new VectorEmbeddingsSimilarityOptimizations.Util.Vectors(NumberOfVectorsToCreate);
 
             ProcessorsAvailableAt75Percent = (int)(0.75 * Environment.ProcessorCount);
         }
@@ -64,105 +56,28 @@ namespace VectorEmbeddingsSimilarityOptimizations
         [Params(false, true)] //<-- Change this to determine if to run on a single thread or leverage 75% of available threads 
         public bool MultiThreaded { get; set; }
 
-        private static IEnumerable<VectorScore> TopMatchingVectors(ReadOnlySpan<float> vectorToCompareTo, ReadOnlySpan<float[]> vectors,
-            bool useCosineSimilarity, bool multiThreaded)
-        {
-            var results = new List<VectorScore>(vectors.Length);
-            var numOfVectors = vectors.Length;
-
-            if (multiThreaded)
-            {
-                var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = ProcessorsAvailableAt75Percent };
-                var resultsConcurrentBag = new ConcurrentBag<VectorScore>(); // <- use concurrent collection for parallel loop
-                // You can use an array copy in this simple scenario to make this faster, but most scenarios will share data
-
-                // Need to cast these as ReadOnlyMemory to avoid ref struct error or do any unsafe pointers
-                // This probably can be optimized
-                var vectorToCompareToMemory = new ReadOnlyMemory<float>(vectorToCompareTo.ToArray());
-                var vectorsMemory = new ReadOnlyMemory<float[]>(vectors.ToArray());
-
-                Parallel.For(0, numOfVectors, parallelOptions,
-                 i =>
-                 {
-                     var singleVector = vectorsMemory.Slice(i, 1).Span[0].AsSpan();
-                     var vectorToCompareToArray = vectorToCompareToMemory.Span;
-
-                     
-                     var similarityScore = useCosineSimilarity ? TensorPrimitives.CosineSimilarity(vectorToCompareToArray, singleVector) :
-                         TensorPrimitives.Dot(vectorToCompareToArray, singleVector);
-
-                     resultsConcurrentBag.Add(new VectorScore { VectorIndex = i, SimilarityScore = similarityScore });
-                 });
-
-                return resultsConcurrentBag.OrderByDescending(a => a.SimilarityScore).Take(50);
-            }
-            else
-            {
-                for (var i = 0; i != numOfVectors; i++)
-                {
-                    ReadOnlySpan<float> singleVector = vectors.Slice(i, 1)[0];
-
-                    var similarityScore = useCosineSimilarity ? TensorPrimitives.CosineSimilarity(vectorToCompareTo, singleVector) :
-                        TensorPrimitives.Dot(vectorToCompareTo, singleVector);
-
-                    results.Add(new VectorScore { VectorIndex = i, SimilarityScore = similarityScore });
-                }
-
-                return results.OrderByDescending(a => a.SimilarityScore).Take(50);
-            }
-        }
-
-        private static float[] GenerateFloatVector(int numDimension)
-        {
-            double MIN_VALUE = -1.0;
-            double MAX_VALUE = 1.0;
-
-            float[] result = new float[numDimension];
-            Random random = new Random();
-
-            for (int i = 0; i < numDimension; i++)
-            {
-                result[i] = (float) (random.NextDouble() * (MAX_VALUE - MIN_VALUE) + MIN_VALUE);
-            }
-
-            return result;
-        }
-
-        private static float[][] GenerateFloatVectors(int numVectors, int numDimensions)
-        {
-            var result = new float[numVectors][];
-            Random random = new Random();
-
-            for (int i = 0; i < numVectors; i++)
-            {
-                result[i] = GenerateFloatVector(numDimensions);
-            }
-
-            return result;
-        }
-
         [Benchmark]
         public void CosineSimilarityVectors768Dimensions()
         {
-            var results = TopMatchingVectors(vectorToCompareTo768Dimensions, testVectors768Dimensions, true, MultiThreaded);
+            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo768Dimensions, vectors?.TestVectors768Dimensions, true, MultiThreaded);
         }
 
         [Benchmark]
         public void DotProductVectors768Dimensions()
         {
-            var results = TopMatchingVectors(vectorToCompareTo768Dimensions, testVectors768Dimensions, false, MultiThreaded);
+            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo768Dimensions, vectors?.TestVectors768Dimensions, false, MultiThreaded);
         }
 
         [Benchmark]
         public void CosineSimilarityVectors1536Dimensions()
         {
-            var results = TopMatchingVectors(vectorToCompareTo1536Dimensions, testVectors1536Dimensions, true, MultiThreaded);
+            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, MultiThreaded);
         }
 
         [Benchmark]
         public void DotProductVectors1536Dimensions()
         {
-            var results = TopMatchingVectors(vectorToCompareTo1536Dimensions, testVectors1536Dimensions, false, MultiThreaded);
+            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, false, MultiThreaded);
         }
     }
 
