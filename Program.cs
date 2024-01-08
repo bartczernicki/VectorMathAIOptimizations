@@ -10,11 +10,10 @@ using Microsoft.SemanticKernel;
 
 namespace VectorEmbeddingsSimilarityOptimizations
 {
-    [MemoryDiagnoser(false)]
+    [MemoryDiagnoser(true)]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
-    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net60, baseline: false)]
-    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80, baseline: true)]
-    [Config(typeof(BenchmarkConfig))]
+    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80)]
+    [Config(typeof(VectorEmbeddingsSimilarityOptimizations.Util.BenchmarkConfig))]
     public class Program
     {
         // Fields
@@ -25,7 +24,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
 
 
         // Processor Count (set at 75% in code)
-        private static int ProcessorsAvailableAt75Percent = 0;
+        private static int ProcessorsAvailableAt75Percent = Util.BenchmarkConfig.ProcessorsAvailableAt75Percent;
 
         static void Main(string[] args)
         {
@@ -58,7 +57,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
             ProcessorsAvailableAt75Percent = (int)(0.75 * Environment.ProcessorCount);
         }
 
-        [Params(1000, 100000)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, large)
+        [Params(1000, 100)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, large)
         // 1mil embeddings is roughly 700,000-1mil document pages with a decent amount of text present
         public int NumberOfVectorsToCreate { get; set; }
 

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net8.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Platforms>AnyCPU;x64</Platforms>
@@ -11,9 +11,13 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
-    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-rc4" />
-    <PackageReference Include="Microsoft.SemanticKernel.Core" Version="1.0.0-rc4" />
+    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.1" />
+    <PackageReference Include="Microsoft.SemanticKernel.Core" Version="1.0.1" />
     <PackageReference Include="System.Numerics.Tensors" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VectorEmbeddingsSimilarityOptimizations.Util\VectorEmbeddingsSimilarityOptimizations.Util.csproj" />
   </ItemGroup>
 
 </Project>
