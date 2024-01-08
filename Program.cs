@@ -80,13 +80,4 @@ namespace VectorEmbeddingsSimilarityOptimizations
             var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, false, MultiThreaded);
         }
     }
-
-    [MemoryDiagnoser(false)]
-    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
-    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80, baseline: true)]
-    [Config(typeof(BenchmarkConfig))]
-    public class AvxBenchmark
-    {
-
-    }
 }
