@@ -4,10 +4,6 @@ using System.Runtime.Intrinsics;
 
 namespace VectorEmbeddingsSimilarityOptimizations
 {
-    //[MemoryDiagnoser(true)]
-    //[Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
-    //[SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80)]
-    //[Config(typeof(VectorEmbeddingsSimilarityOptimizations.Util.BenchmarkConfig))]
     public class Program
     {
         private Util.Vectors? vectors;
@@ -30,18 +26,6 @@ namespace VectorEmbeddingsSimilarityOptimizations
             // print results
             Console.WriteLine(summary.ToString());
         }
-
-        //[GlobalSetup]
-        //public void Setup()
-        //{
-        //    // Generate float vectors that match dimension size of Open-Source and OpenAI Embeddings
-        //    // MTEB Database: https://huggingface.co/spaces/mteb/leaderboard 
-        //    // 768 Dimensions is a popular embeddings dimension size for several leaderboard open-source models
-        //    // 1536 Dimensions is the size of the ada-002 model for OpenAI/Azure OpenAI embeddings
-        //    this.vectors = new VectorEmbeddingsSimilarityOptimizations.Util.Vectors(NumberOfVectorsToCreate);
-
-        //    ProcessorsAvailableAt75Percent = (int)(0.75 * Environment.ProcessorCount);
-        //}
 
         //[Params(1000, 100)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, large)
         //// 1mil embeddings is roughly 700,000-1mil document pages with a decent amount of text present
