@@ -5,21 +5,23 @@ using BenchmarkDotNet.Running;
 using System.Collections.Concurrent;
 using System.Numerics.Tensors;
 using System.Runtime.Intrinsics;
+using Microsoft.SemanticKernel;
+
 
 namespace VectorEmbeddingsSimilarityOptimizations
 {
     [MemoryDiagnoser(false)]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
-    //[SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net70, baseline: false)]
+    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net60, baseline: false)]
     [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80, baseline: true)]
     [Config(typeof(BenchmarkConfig))]
     public class Program
     {
         // Fields
-        private float[]? vectorToCompareTo768Dimensions;
-        private float[][]? testVectors768Dimensions;
-        private float[]? vectorToCompareTo1536Dimensions;
-        private float[][]? testVectors1536Dimensions;
+        private static float[]? vectorToCompareTo768Dimensions;
+        private static float[][]? testVectors768Dimensions;
+        private static float[]? vectorToCompareTo1536Dimensions;
+        private static float[][]? testVectors1536Dimensions;
 
 
         // Processor Count (set at 75% in code)
@@ -29,12 +31,16 @@ namespace VectorEmbeddingsSimilarityOptimizations
         {
             Console.WriteLine("Vector Performance Benchmark");
 
-            #if NET8_0_OR_GREATER
-            Console.WriteLine("AVX-256: " + Vector256.IsHardwareAccelerated);
-            Console.WriteLine("AVX-512: " + Vector512.IsHardwareAccelerated);
-            #endif
+        #if NET8_0_OR_GREATER
+            Console.WriteLine("AVX-128: " + Vector128.IsHardwareAccelerated.ToString());
+            Console.WriteLine("AVX-256: " + Vector256.IsHardwareAccelerated.ToString());
+            Console.WriteLine("AVX-512: " + Vector512.IsHardwareAccelerated.ToString());
+        #endif
 
-            var summary = BenchmarkRunner.Run(typeof(Program).Assembly);
+            //var summary = BenchmarkRunner.Run(typeof(Program).Assembly);
+            var summary = BenchmarkRunner.Run<Program>();
+            // print results
+            Console.WriteLine(summary.ToString());
         }
 
         [GlobalSetup]
@@ -161,5 +167,12 @@ namespace VectorEmbeddingsSimilarityOptimizations
         }
     }
 
+    [MemoryDiagnoser(false)]
+    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
+    [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80, baseline: true)]
+    [Config(typeof(BenchmarkConfig))]
+    public class AvxBenchmark
+    {
 
+    }
 }
