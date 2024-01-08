@@ -10,13 +10,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\**" />
+    <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
+    <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\**" />
+    <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
+    <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\**" />
+    <None Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
-    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.1" />
-    <PackageReference Include="Microsoft.SemanticKernel.Core" Version="1.0.1" />
     <PackageReference Include="System.Numerics.Tensors" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation.csproj" />
     <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Util\VectorEmbeddingsSimilarityOptimizations.Util.csproj" />
   </ItemGroup>
 
