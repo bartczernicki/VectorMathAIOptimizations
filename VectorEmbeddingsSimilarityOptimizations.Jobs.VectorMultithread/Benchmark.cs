@@ -27,13 +27,13 @@ namespace VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread
         [Benchmark(Baseline = true)]
         public void CosineSimilarityVectors1536Dimensions()
         {
-            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, false);
+            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, false, string.Empty);
         }
 
         [Benchmark]
         public void CosineSimilarityVectors1536DimensionsMultithread()
         {
-            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, true);
+            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, true, string.Empty);
         }
     }
 }

@@ -13,14 +13,9 @@ namespace VectorEmbeddingsSimilarityOptimizations
 
             Console.WriteLine("Vector Performance Benchmark");
 
-            #if NET8_0_OR_GREATER
-                Console.WriteLine("AVX-128: " + Vector128.IsHardwareAccelerated.ToString());
-                Console.WriteLine("AVX-256: " + Vector256.IsHardwareAccelerated.ToString());
-                Console.WriteLine("AVX-512: " + Vector512.IsHardwareAccelerated.ToString());
-            #endif
 
             // Benchmark - Vector Linear Scale
-            var summary = BenchmarkRunner.Run<Jobs.VectorLinear.Benchmark>();
+            // var summary = BenchmarkRunner.Run<Jobs.VectorLinear.Benchmark>();
 
             // Benchmark - Vector calculations using Multi-Threading
             //Console.WriteLine(string.Format("Using {0} CPU cores for multithreaded benchmark.", Util.BenchmarkConfig.ProcessorsAvailableAt75Percent));
@@ -31,6 +26,14 @@ namespace VectorEmbeddingsSimilarityOptimizations
 
             // Benchmark - Vector Dimensions comparison of 768 vs 1536 Dimensions
             //var summary = BenchmarkRunner.Run<Jobs.VectorDimensions.Benchmark>();
+
+            // Benchmark - Vector with hardware AVX Optimizations (SIMD Math)
+            #if NET8_0_OR_GREATER
+                        Console.WriteLine("AVX-128 available: " + Vector128.IsHardwareAccelerated.ToString());
+                        Console.WriteLine("AVX-256 available: " + Vector256.IsHardwareAccelerated.ToString());
+                        Console.WriteLine("AVX-512 available: " + Vector512.IsHardwareAccelerated.ToString());
+            #endif
+            var summary = BenchmarkRunner.Run<Jobs.VectorAVX.Benchmark>();
 
             // Print Benchmark results
             Console.WriteLine(summary.ToString());

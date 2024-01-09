@@ -2,9 +2,10 @@
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
+using System.Threading;
 
 
-namespace VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation
+namespace VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX
 {
     [MemoryDiagnoser(true)]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
@@ -14,27 +15,27 @@ namespace VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation
     {
         private Util.Vectors? vectors;
 
+        // Dynamically retrieve the supported AVX types on this hardware
+        public IEnumerable<string> SupportedAVXTypes => Util.Vectors.GetSupportedAVXTypes();
+
         [GlobalSetup]
         public void Setup()
         {
-            this.vectors = new Util.Vectors(NumberOfVectorsToCreate);    
-
+            this.vectors = new Util.Vectors(NumberOfVectorsToCreate);
         }
 
-        [Params(1000)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, large)
+        [Params(100)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, large)
         // 1mil embeddings is roughly 700,000-1mil document paragraphs/phrases with a decent amount of text present
         public int NumberOfVectorsToCreate { get; set; }
+
+        // property with public setter
+        [ParamsSource(nameof(SupportedAVXTypes))]
+        public string AVXType { get; set; } = string.Empty;
 
         [Benchmark(Baseline = true)]
         public void CosineSimilarityVectors1536Dimensions()
         {
             var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, false, string.Empty);
-        }
-
-        [Benchmark]
-        public void DotProductVectors1536Dimensions()
-        {
-            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, false, false, string.Empty);
         }
     }
 }

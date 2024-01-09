@@ -27,7 +27,7 @@ namespace VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear
         [Benchmark(Baseline = true)]
         public void CosineSimilarityVectors1536Dimensions()
         {
-            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, false);
+            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, false, string.Empty);
         }
     }
 }

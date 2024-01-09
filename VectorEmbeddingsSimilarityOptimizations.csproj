@@ -10,18 +10,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultipleThreads\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
+    <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultipleThreads\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
+    <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear\**" />
@@ -36,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX.csproj" />
     <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation.csproj" />
     <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions.csproj" />
     <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear.csproj" />
