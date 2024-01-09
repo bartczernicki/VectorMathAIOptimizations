@@ -62,6 +62,7 @@ namespace VectorEmbeddingsSimilarityOptimizations.Util
         {
             var results = new List<VectorScore>(vectors.Length);
             var numOfVectors = vectors.Length;
+            var useDotNetAvx = (avxType == "NonHardware") ? false : true;
 
             if (multiThreaded)
             {
@@ -95,7 +96,7 @@ namespace VectorEmbeddingsSimilarityOptimizations.Util
                 {
                     ReadOnlySpan<float> singleVector = vectors.Slice(i, 1)[0];
 
-                    var similarityScore = useCosineSimilarity ? BenchmarkCosineSimilarity(vectorToCompareTo, singleVector, true, avxType) :
+                    var similarityScore = useCosineSimilarity ? BenchmarkCosineSimilarity(vectorToCompareTo, singleVector, useDotNetAvx, avxType) :
                         TensorPrimitives.Dot(vectorToCompareTo, singleVector);
 
                     results.Add(new VectorScore { VectorIndex = i, SimilarityScore = similarityScore });

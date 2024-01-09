@@ -24,7 +24,7 @@ namespace VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX
             this.vectors = new Util.Vectors(NumberOfVectorsToCreate);
         }
 
-        [Params(100)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, large)
+        [Params(100000)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, large)
         // 1mil embeddings is roughly 700,000-1mil document paragraphs/phrases with a decent amount of text present
         public int NumberOfVectorsToCreate { get; set; }
 
@@ -32,10 +32,10 @@ namespace VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX
         [ParamsSource(nameof(SupportedAVXTypes))]
         public string AVXType { get; set; } = string.Empty;
 
-        [Benchmark(Baseline = true)]
+        [Benchmark]
         public void CosineSimilarityVectors1536Dimensions()
         {
-            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, false, string.Empty);
+            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, false, AVXType);
         }
     }
 }
