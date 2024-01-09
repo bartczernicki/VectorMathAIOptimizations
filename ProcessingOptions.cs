@@ -13,6 +13,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
         VectorCalculation = 2,
         VectorDimensions = 3,
         VectorMultithread = 4,
-        VectorAVX = 5
+        VectorAVX = 5,
+        Complete = 6
     }
 }

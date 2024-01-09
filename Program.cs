@@ -49,12 +49,12 @@ namespace VectorEmbeddingsSimilarityOptimizations
                 Console.WriteLine("3) Vector Dimensions Benchmark - Compares performance of difference dimensions sizes.");
                 Console.WriteLine("4) Multithreaded Benchmark - Compare multi-core performance vs single core.");
                 Console.WriteLine("5) AVX Hardware Benchmark - Compares performance of AVX hardware acceleration vs no-acceleration.");
-
+                Console.WriteLine("6) Complete Benchmark - Compares performance of all best practices combined.");
 
                 var insertedText = Console.ReadLine() ?? string.Empty;
                 string trimmedInput = insertedText.Trim();
 
-                if (trimmedInput == "1" || trimmedInput == "2" || trimmedInput == "3" || trimmedInput == "4" || trimmedInput == "5")
+                if (trimmedInput == "1" || trimmedInput == "2" || trimmedInput == "3" || trimmedInput == "4" || trimmedInput == "5" || trimmedInput == "6")
                 {
                     validInput = true;
                     selectedProcessingChoice = (ProcessingOptions)Int32.Parse(trimmedInput);
@@ -89,6 +89,12 @@ namespace VectorEmbeddingsSimilarityOptimizations
                 // Benchmark - Vector calculations using Multi-Threading
                 Console.WriteLine(string.Format("Using {0} CPU cores for multithreaded benchmark.", Util.BenchmarkConfig.ProcessorsAvailableAt75Percent));
                 summary = BenchmarkRunner.Run<Jobs.VectorMultithread.Benchmark>();
+            }
+            else if (selectedProcessingChoice == ProcessingOptions.Complete)
+            {
+                // Benchmark - Vector calculations using Multi-Threading
+                Console.WriteLine(string.Format("Using {0} CPU cores for multithreaded benchmark.", Util.BenchmarkConfig.ProcessorsAvailableAt75Percent));
+                summary = BenchmarkRunner.Run<Jobs.Complete.Benchmark>();
             }
             else
             {

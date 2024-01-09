@@ -82,7 +82,7 @@ namespace VectorEmbeddingsSimilarityOptimizations.Util
                      var vectorToCompareToArray = vectorToCompareToMemory.Span;
 
 
-                     var similarityScore = useCosineSimilarity ? BenchmarkCosineSimilarity(vectorToCompareToArray, singleVector, true, avxType) :
+                     var similarityScore = useCosineSimilarity ? BenchmarkCosineSimilarity(vectorToCompareToArray, singleVector, useDotNetAvx, avxType) :
                          TensorPrimitives.Dot(vectorToCompareToArray, singleVector);
 
                      resultsConcurrentBag.Add(new VectorScore { VectorIndex = i, SimilarityScore = similarityScore });
