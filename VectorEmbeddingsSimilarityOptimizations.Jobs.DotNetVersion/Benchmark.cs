@@ -22,7 +22,7 @@ namespace VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion
             this.vectors = new Vectors(NumberOfVectorsToCreate);
         }
 
-        [Params(1000000)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, medium, large)
+        [Params(100000)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, medium, large)
         // 1mil embeddings is roughly 700,000-1mil document paragraphs/phrases with a decent amount of text present
         public int NumberOfVectorsToCreate { get; set; }
 
