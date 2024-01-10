@@ -5,12 +5,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <!--<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.Complete\**" />
+    <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\**" />
@@ -19,6 +18,7 @@
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.Complete\**" />
+    <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\**" />
@@ -27,6 +27,7 @@
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.Complete\**" />
+    <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\**" />
@@ -43,6 +44,7 @@
 
   <ItemGroup>
     <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.Complete\VectorEmbeddingsSimilarityOptimizations.Jobs.Complete.csproj" />
+    <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion\VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion.csproj" />
     <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX.csproj" />
     <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation.csproj" />
     <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions.csproj" />

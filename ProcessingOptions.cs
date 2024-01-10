@@ -14,6 +14,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
         VectorDimensions = 3,
         VectorMultithread = 4,
         VectorAVX = 5,
-        Complete = 6
+        DotNetVersion = 6,
+        Complete = 7
     }
 }

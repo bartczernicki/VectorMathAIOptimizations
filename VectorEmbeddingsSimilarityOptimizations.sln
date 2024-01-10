@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorEmbeddingsSimilarityO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX", "VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX.csproj", "{CFFCDBCB-BEA9-43E2-B833-AC827F7AC535}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorEmbeddingsSimilarityOptimizations.Jobs.Complete", "VectorEmbeddingsSimilarityOptimizations.Jobs.Complete\VectorEmbeddingsSimilarityOptimizations.Jobs.Complete.csproj", "{8785956E-7D45-4753-944A-3DDDE01971A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorEmbeddingsSimilarityOptimizations.Jobs.Complete", "VectorEmbeddingsSimilarityOptimizations.Jobs.Complete\VectorEmbeddingsSimilarityOptimizations.Jobs.Complete.csproj", "{8785956E-7D45-4753-944A-3DDDE01971A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion", "VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion\VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion.csproj", "{9576A124-BEFC-4770-8FA3-8FD59DC7F535}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,14 @@ Global
 		{8785956E-7D45-4753-944A-3DDDE01971A9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8785956E-7D45-4753-944A-3DDDE01971A9}.Release|x64.ActiveCfg = Release|Any CPU
 		{8785956E-7D45-4753-944A-3DDDE01971A9}.Release|x64.Build.0 = Release|Any CPU
+		{9576A124-BEFC-4770-8FA3-8FD59DC7F535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9576A124-BEFC-4770-8FA3-8FD59DC7F535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9576A124-BEFC-4770-8FA3-8FD59DC7F535}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9576A124-BEFC-4770-8FA3-8FD59DC7F535}.Debug|x64.Build.0 = Debug|Any CPU
+		{9576A124-BEFC-4770-8FA3-8FD59DC7F535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9576A124-BEFC-4770-8FA3-8FD59DC7F535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9576A124-BEFC-4770-8FA3-8FD59DC7F535}.Release|x64.ActiveCfg = Release|Any CPU
+		{9576A124-BEFC-4770-8FA3-8FD59DC7F535}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
