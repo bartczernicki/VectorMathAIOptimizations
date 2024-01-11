@@ -11,7 +11,7 @@ namespace VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
     [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80)]
     [Config(typeof(Util.BenchmarkConfig))]
-    [HideColumns(Column.Gen0, Column.Gen1, Column.Allocated)] // Hide unnecessary columns
+    [HideColumns(Column.Gen0, Column.Gen1, Column.Allocated, Column.AllocRatio)] // Hide unnecessary columns
     public class Benchmark
     {
         private Util.Vectors? vectors;

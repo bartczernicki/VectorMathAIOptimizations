@@ -15,9 +15,7 @@ namespace VectorEmbeddingsSimilarityOptimizations.Util
 
         public BenchmarkConfig()
         {
-            // Add Exporters
-            this.AddExporter(MarkdownExporter.GitHub);
-            this.AddExporter(HtmlExporter.Default);
+            // Add Plain Exporter
             this.AddExporter(PlainExporter.Default);
 
             SummaryStyle = SummaryStyle.Default
