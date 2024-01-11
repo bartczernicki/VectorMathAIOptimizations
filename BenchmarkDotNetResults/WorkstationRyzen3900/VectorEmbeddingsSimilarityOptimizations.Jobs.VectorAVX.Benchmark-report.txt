@@ -1,0 +1,222 @@
+*** Benchmark.CosineSimilarityVectors1536Dimensions: Job-EUSCFM(Runtime=.NET 8.0, RunStrategy=Throughput) [NumberOfVectorsToCreate=100000, AVXType=NonHardware] ***
+* Raw *
+OverheadJitting  1: 1 op, 158100.00 ns, 158.1000 us/op
+WorkloadJitting  1: 1 op, 320993200.00 ns, 320.9932 ms/op
+WorkloadPilot    1: 2 op, 359330500.00 ns, 179.6652 ms/op
+WorkloadPilot    2: 3 op, 545611100.00 ns, 181.8704 ms/op
+WorkloadWarmup   1: 3 op, 543624900.00 ns, 181.2083 ms/op
+WorkloadWarmup   2: 3 op, 542159700.00 ns, 180.7199 ms/op
+WorkloadWarmup   3: 3 op, 541093400.00 ns, 180.3645 ms/op
+WorkloadWarmup   4: 3 op, 541975400.00 ns, 180.6585 ms/op
+WorkloadWarmup   5: 3 op, 543872900.00 ns, 181.2910 ms/op
+WorkloadWarmup   6: 3 op, 544034800.00 ns, 181.3449 ms/op
+WorkloadWarmup   7: 3 op, 543935200.00 ns, 181.3117 ms/op
+WorkloadWarmup   8: 3 op, 544039700.00 ns, 181.3466 ms/op
+WorkloadWarmup   9: 3 op, 553036100.00 ns, 184.3454 ms/op
+WorkloadWarmup  10: 3 op, 543789100.00 ns, 181.2630 ms/op
+WorkloadActual   1: 3 op, 553048300.00 ns, 184.3494 ms/op
+WorkloadActual   2: 3 op, 546480300.00 ns, 182.1601 ms/op
+WorkloadActual   3: 3 op, 553144600.00 ns, 184.3815 ms/op
+WorkloadActual   4: 3 op, 548279900.00 ns, 182.7600 ms/op
+WorkloadActual   5: 3 op, 547952600.00 ns, 182.6509 ms/op
+WorkloadActual   6: 3 op, 551934900.00 ns, 183.9783 ms/op
+WorkloadActual   7: 3 op, 546727100.00 ns, 182.2424 ms/op
+WorkloadActual   8: 3 op, 545976300.00 ns, 181.9921 ms/op
+WorkloadActual   9: 3 op, 545567000.00 ns, 181.8557 ms/op
+WorkloadActual  10: 3 op, 545230500.00 ns, 181.7435 ms/op
+WorkloadActual  11: 3 op, 545331100.00 ns, 181.7770 ms/op
+WorkloadActual  12: 3 op, 545874100.00 ns, 181.9580 ms/op
+WorkloadActual  13: 3 op, 546149200.00 ns, 182.0497 ms/op
+WorkloadActual  14: 3 op, 541555400.00 ns, 180.5185 ms/op
+WorkloadActual  15: 3 op, 541533100.00 ns, 180.5110 ms/op
+WorkloadResult   1: 3 op, 546480300.00 ns, 182.1601 ms/op
+WorkloadResult   2: 3 op, 548279900.00 ns, 182.7600 ms/op
+WorkloadResult   3: 3 op, 547952600.00 ns, 182.6509 ms/op
+WorkloadResult   4: 3 op, 551934900.00 ns, 183.9783 ms/op
+WorkloadResult   5: 3 op, 546727100.00 ns, 182.2424 ms/op
+WorkloadResult   6: 3 op, 545976300.00 ns, 181.9921 ms/op
+WorkloadResult   7: 3 op, 545567000.00 ns, 181.8557 ms/op
+WorkloadResult   8: 3 op, 545230500.00 ns, 181.7435 ms/op
+WorkloadResult   9: 3 op, 545331100.00 ns, 181.7770 ms/op
+WorkloadResult  10: 3 op, 545874100.00 ns, 181.9580 ms/op
+WorkloadResult  11: 3 op, 546149200.00 ns, 182.0497 ms/op
+WorkloadResult  12: 3 op, 541555400.00 ns, 180.5185 ms/op
+WorkloadResult  13: 3 op, 541533100.00 ns, 180.5110 ms/op
+
+* Statistics for OverheadJitting
+Mean = 158.100 μs, StdErr = 0.000 μs (0.00%), N = 1, StdDev = 0.000 μs
+Min = 158.100 μs, Q1 = 158.100 μs, Median = 158.100 μs, Q3 = 158.100 μs, Max = 158.100 μs
+IQR = 0.000 μs, LowerFence = 158.100 μs, UpperFence = 158.100 μs
+ConfidenceInterval = [NaN μs; NaN μs] (CI 99.9%), Margin = NaN μs (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+-------------------- Histogram --------------------
+[158.100 μs ; 158.101 μs) | @
+---------------------------------------------------
+
+* Statistics for WorkloadJitting
+Mean = 320.993 ms, StdErr = 0.000 ms (0.00%), N = 1, StdDev = 0.000 ms
+Min = 320.993 ms, Q1 = 320.993 ms, Median = 320.993 ms, Q3 = 320.993 ms, Max = 320.993 ms
+IQR = 0.000 ms, LowerFence = 320.993 ms, UpperFence = 320.993 ms
+ConfidenceInterval = [NaN ms; NaN ms] (CI 99.9%), Margin = NaN ms (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+-------------------- Histogram --------------------
+[320.993 ms ; 320.993 ms) | @
+---------------------------------------------------
+
+* Statistics for WorkloadPilot
+Mean = 180.768 ms, StdErr = 1.103 ms (0.61%), N = 2, StdDev = 1.559 ms
+Min = 179.665 ms, Q1 = 180.217 ms, Median = 180.768 ms, Q3 = 181.319 ms, Max = 181.870 ms
+IQR = 1.103 ms, LowerFence = 178.563 ms, UpperFence = 182.973 ms
+ConfidenceInterval = [NaN ms; NaN ms] (CI 99.9%), Margin = NaN ms (NaN% of Mean)
+Skewness = 0, Kurtosis = 0.25, MValue = 2
+-------------------- Histogram --------------------
+[179.143 ms ; 182.392 ms) | @@
+---------------------------------------------------
+
+* Statistics for WorkloadWarmup
+Mean = 181.385 ms, StdErr = 0.347 ms (0.19%), N = 10, StdDev = 1.097 ms
+Min = 180.364 ms, Q1 = 180.842 ms, Median = 181.277 ms, Q3 = 181.337 ms, Max = 184.345 ms
+IQR = 0.495 ms, LowerFence = 180.100 ms, UpperFence = 182.079 ms
+ConfidenceInterval = [179.726 ms; 183.045 ms] (CI 99.9%), Margin = 1.659 ms (0.91% of Mean)
+Skewness = 1.83, Kurtosis = 5.4, MValue = 2
+-------------------- Histogram --------------------
+[179.696 ms ; 185.014 ms) | @@@@@@@@@@
+---------------------------------------------------
+
+* Statistics for WorkloadActual
+Mean = 182.329 ms, StdErr = 0.302 ms (0.17%), N = 15, StdDev = 1.169 ms
+Min = 180.511 ms, Q1 = 181.816 ms, Median = 182.050 ms, Q3 = 182.705 ms, Max = 184.382 ms
+IQR = 0.889 ms, LowerFence = 180.483 ms, UpperFence = 184.039 ms
+ConfidenceInterval = [181.079 ms; 183.578 ms] (CI 99.9%), Margin = 1.249 ms (0.69% of Mean)
+Skewness = 0.38, Kurtosis = 2.28, MValue = 2
+-------------------- Histogram --------------------
+[180.429 ms ; 185.004 ms) | @@@@@@@@@@@@@@@
+---------------------------------------------------
+
+* Statistics for WorkloadResult
+Mean = 182.015 ms, StdErr = 0.247 ms (0.14%), N = 13, StdDev = 0.892 ms
+Min = 180.511 ms, Q1 = 181.777 ms, Median = 181.992 ms, Q3 = 182.242 ms, Max = 183.978 ms
+IQR = 0.465 ms, LowerFence = 181.079 ms, UpperFence = 182.940 ms
+ConfidenceInterval = [180.947 ms; 183.083 ms] (CI 99.9%), Margin = 1.068 ms (0.59% of Mean)
+Skewness = 0.16, Kurtosis = 3.09, MValue = 2
+-------------------- Histogram --------------------
+[180.375 ms ; 184.019 ms) | @@@@@@@@@@@@@
+---------------------------------------------------
+*** Benchmark.CosineSimilarityVectors1536Dimensions: Job-EUSCFM(Runtime=.NET 8.0, RunStrategy=Throughput) [NumberOfVectorsToCreate=100000, AVXType=Vector128] ***
+* Raw *
+OverheadJitting  1: 1 op, 140600.00 ns, 140.6000 us/op
+WorkloadJitting  1: 1 op, 159886500.00 ns, 159.8865 ms/op
+WorkloadPilot    1: 2 op, 76572500.00 ns, 38.2863 ms/op
+WorkloadPilot    2: 3 op, 121872000.00 ns, 40.6240 ms/op
+WorkloadPilot    3: 4 op, 160131100.00 ns, 40.0328 ms/op
+WorkloadPilot    4: 5 op, 195904900.00 ns, 39.1810 ms/op
+WorkloadPilot    5: 6 op, 240465200.00 ns, 40.0775 ms/op
+WorkloadPilot    6: 7 op, 277843200.00 ns, 39.6919 ms/op
+WorkloadPilot    7: 8 op, 331627800.00 ns, 41.4535 ms/op
+WorkloadPilot    8: 9 op, 370661900.00 ns, 41.1847 ms/op
+WorkloadPilot    9: 10 op, 402975600.00 ns, 40.2976 ms/op
+WorkloadPilot   10: 11 op, 457629800.00 ns, 41.6027 ms/op
+WorkloadPilot   11: 12 op, 496661500.00 ns, 41.3885 ms/op
+WorkloadPilot   12: 13 op, 530922600.00 ns, 40.8402 ms/op
+WorkloadWarmup   1: 13 op, 531455700.00 ns, 40.8812 ms/op
+WorkloadWarmup   2: 13 op, 531179500.00 ns, 40.8600 ms/op
+WorkloadWarmup   3: 13 op, 530417700.00 ns, 40.8014 ms/op
+WorkloadWarmup   4: 13 op, 530396200.00 ns, 40.7997 ms/op
+WorkloadWarmup   5: 13 op, 534305800.00 ns, 41.1004 ms/op
+WorkloadWarmup   6: 13 op, 535202800.00 ns, 41.1694 ms/op
+WorkloadWarmup   7: 13 op, 534734700.00 ns, 41.1334 ms/op
+WorkloadWarmup   8: 13 op, 534479500.00 ns, 41.1138 ms/op
+WorkloadWarmup   9: 13 op, 534757100.00 ns, 41.1352 ms/op
+WorkloadWarmup  10: 13 op, 534596700.00 ns, 41.1228 ms/op
+WorkloadActual   1: 13 op, 536809400.00 ns, 41.2930 ms/op
+WorkloadActual   2: 13 op, 532738400.00 ns, 40.9799 ms/op
+WorkloadActual   3: 13 op, 537720800.00 ns, 41.3631 ms/op
+WorkloadActual   4: 13 op, 537815300.00 ns, 41.3704 ms/op
+WorkloadActual   5: 13 op, 534223500.00 ns, 41.0941 ms/op
+WorkloadActual   6: 13 op, 535108600.00 ns, 41.1622 ms/op
+WorkloadActual   7: 13 op, 536966200.00 ns, 41.3051 ms/op
+WorkloadActual   8: 13 op, 535304500.00 ns, 41.1773 ms/op
+WorkloadActual   9: 13 op, 531028700.00 ns, 40.8484 ms/op
+WorkloadActual  10: 13 op, 531548500.00 ns, 40.8883 ms/op
+WorkloadActual  11: 13 op, 530885600.00 ns, 40.8374 ms/op
+WorkloadActual  12: 13 op, 530473100.00 ns, 40.8056 ms/op
+WorkloadActual  13: 13 op, 530151400.00 ns, 40.7809 ms/op
+WorkloadActual  14: 13 op, 531008800.00 ns, 40.8468 ms/op
+WorkloadActual  15: 13 op, 532640100.00 ns, 40.9723 ms/op
+WorkloadResult   1: 13 op, 536809400.00 ns, 41.2930 ms/op
+WorkloadResult   2: 13 op, 532738400.00 ns, 40.9799 ms/op
+WorkloadResult   3: 13 op, 537720800.00 ns, 41.3631 ms/op
+WorkloadResult   4: 13 op, 537815300.00 ns, 41.3704 ms/op
+WorkloadResult   5: 13 op, 534223500.00 ns, 41.0941 ms/op
+WorkloadResult   6: 13 op, 535108600.00 ns, 41.1622 ms/op
+WorkloadResult   7: 13 op, 536966200.00 ns, 41.3051 ms/op
+WorkloadResult   8: 13 op, 535304500.00 ns, 41.1773 ms/op
+WorkloadResult   9: 13 op, 531028700.00 ns, 40.8484 ms/op
+WorkloadResult  10: 13 op, 531548500.00 ns, 40.8883 ms/op
+WorkloadResult  11: 13 op, 530885600.00 ns, 40.8374 ms/op
+WorkloadResult  12: 13 op, 530473100.00 ns, 40.8056 ms/op
+WorkloadResult  13: 13 op, 530151400.00 ns, 40.7809 ms/op
+WorkloadResult  14: 13 op, 531008800.00 ns, 40.8468 ms/op
+WorkloadResult  15: 13 op, 532640100.00 ns, 40.9723 ms/op
+
+* Statistics for OverheadJitting
+Mean = 140.600 μs, StdErr = 0.000 μs (0.00%), N = 1, StdDev = 0.000 μs
+Min = 140.600 μs, Q1 = 140.600 μs, Median = 140.600 μs, Q3 = 140.600 μs, Max = 140.600 μs
+IQR = 0.000 μs, LowerFence = 140.600 μs, UpperFence = 140.600 μs
+ConfidenceInterval = [NaN μs; NaN μs] (CI 99.9%), Margin = NaN μs (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+-------------------- Histogram --------------------
+[140.600 μs ; 140.601 μs) | @
+---------------------------------------------------
+
+* Statistics for WorkloadJitting
+Mean = 159.887 ms, StdErr = 0.000 ms (0.00%), N = 1, StdDev = 0.000 ms
+Min = 159.887 ms, Q1 = 159.887 ms, Median = 159.887 ms, Q3 = 159.887 ms, Max = 159.887 ms
+IQR = 0.000 ms, LowerFence = 159.887 ms, UpperFence = 159.887 ms
+ConfidenceInterval = [NaN ms; NaN ms] (CI 99.9%), Margin = NaN ms (NaN% of Mean)
+Skewness = NaN, Kurtosis = NaN, MValue = 2
+-------------------- Histogram --------------------
+[159.886 ms ; 159.887 ms) | @
+---------------------------------------------------
+
+* Statistics for WorkloadPilot
+Mean = 40.388 ms, StdErr = 0.290 ms (0.72%), N = 12, StdDev = 1.004 ms
+Min = 38.286 ms, Q1 = 39.948 ms, Median = 40.461 ms, Q3 = 41.236 ms, Max = 41.603 ms
+IQR = 1.288 ms, LowerFence = 38.015 ms, UpperFence = 43.168 ms
+ConfidenceInterval = [39.102 ms; 41.675 ms] (CI 99.9%), Margin = 1.286 ms (3.19% of Mean)
+Skewness = -0.56, Kurtosis = 2.2, MValue = 2
+-------------------- Histogram --------------------
+[37.710 ms ; 39.163 ms) | @
+[39.163 ms ; 40.538 ms) | @@@@@
+[40.538 ms ; 41.689 ms) | @@@@@@
+---------------------------------------------------
+
+* Statistics for WorkloadWarmup
+Mean = 41.012 ms, StdErr = 0.049 ms (0.12%), N = 10, StdDev = 0.155 ms
+Min = 40.800 ms, Q1 = 40.865 ms, Median = 41.107 ms, Q3 = 41.131 ms, Max = 41.169 ms
+IQR = 0.266 ms, LowerFence = 40.467 ms, UpperFence = 41.529 ms
+ConfidenceInterval = [40.778 ms; 41.245 ms] (CI 99.9%), Margin = 0.234 ms (0.57% of Mean)
+Skewness = -0.37, Kurtosis = 1.09, MValue = 2
+-------------------- Histogram --------------------
+[40.706 ms ; 41.264 ms) | @@@@@@@@@@
+---------------------------------------------------
+
+* Statistics for WorkloadActual
+Mean = 41.048 ms, StdErr = 0.056 ms (0.14%), N = 15, StdDev = 0.216 ms
+Min = 40.781 ms, Q1 = 40.848 ms, Median = 40.980 ms, Q3 = 41.235 ms, Max = 41.370 ms
+IQR = 0.388 ms, LowerFence = 40.266 ms, UpperFence = 41.816 ms
+ConfidenceInterval = [40.818 ms; 41.279 ms] (CI 99.9%), Margin = 0.231 ms (0.56% of Mean)
+Skewness = 0.24, Kurtosis = 1.34, MValue = 2
+-------------------- Histogram --------------------
+[40.666 ms ; 41.485 ms) | @@@@@@@@@@@@@@@
+---------------------------------------------------
+
+* Statistics for WorkloadResult
+Mean = 41.048 ms, StdErr = 0.056 ms (0.14%), N = 15, StdDev = 0.216 ms
+Min = 40.781 ms, Q1 = 40.848 ms, Median = 40.980 ms, Q3 = 41.235 ms, Max = 41.370 ms
+IQR = 0.388 ms, LowerFence = 40.266 ms, UpperFence = 41.816 ms
+ConfidenceInterval = [40.818 ms; 41.279 ms] (CI 99.9%), Margin = 0.231 ms (0.56% of Mean)
+Skewness = 0.24, Kurtosis = 1.34, MValue = 2
+-------------------- Histogram --------------------
+[40.666 ms ; 41.485 ms) | @@@@@@@@@@@@@@@
+---------------------------------------------------

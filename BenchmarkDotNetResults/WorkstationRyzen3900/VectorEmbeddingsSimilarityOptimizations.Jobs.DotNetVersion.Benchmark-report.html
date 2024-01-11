@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion.Benchmark-20240111-184548</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.13.12, Windows 10 (10.0.19045.3803/22H2/2022Update)
+AMD Ryzen 9 3900X, 1 CPU, 24 logical and 12 physical cores
+.NET SDK 8.0.101
+  [Host]     : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX2
+  Job-YWYBYJ : .NET 6.0.26 (6.0.2623.60508), X64 RyuJIT AVX2
+  Job-HAOBOM : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX2
+</code></pre>
+<pre><code>RunStrategy=Throughput  Allocated=3.81 MB  
+</code></pre>
+
+<table>
+<thead><tr><th>Method                         </th><th>Runtime</th><th>NumberOfVectorsToCreate</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Ratio</th><th>RatioSD</th><th>Alloc Ratio</th>
+</tr>
+</thead><tbody><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 6.0</td><td>100000</td><td>42.60 ms</td><td>0.575 ms</td><td>0.510 ms</td><td>baseline</td><td></td><td></td>
+</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 8.0</td><td>100000</td><td>42.26 ms</td><td>0.750 ms</td><td>0.702 ms</td><td>-1%</td><td>2.2%</td><td>-0%</td>
+</tr></tbody></table>
+</body>
+</html>
