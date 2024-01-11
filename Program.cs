@@ -115,7 +115,7 @@ namespace VectorEmbeddingsSimilarityOptimizations
             }
 
             // Print Benchmark results
-            Console.WriteLine(summary.ToString());
+            Console.WriteLine(summary?.ToString());
         }
     }
 }

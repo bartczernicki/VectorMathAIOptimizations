@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
@@ -12,6 +13,7 @@ namespace VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion
     [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net60, baseline: true)]
     [SimpleJob(runStrategy: RunStrategy.Throughput, runtimeMoniker: RuntimeMoniker.Net80)]
     [Config(typeof(Util.DotNetVersion.BenchmarkConfig))]
+    [HideColumns(Column.Gen0, Column.Gen1, Column.Allocated)] // Hide unnecessary columns
     public class Benchmark
     {
         private Vectors? vectors;
