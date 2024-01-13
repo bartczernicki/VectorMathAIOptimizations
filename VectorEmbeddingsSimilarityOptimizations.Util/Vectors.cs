@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using HNSW.Net;
+using System.Collections.Concurrent;
 using System.Numerics.Tensors;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -30,24 +31,16 @@ namespace VectorEmbeddingsSimilarityOptimizations.Util
 
         private float[] GenerateFloatVector(int numDimension)
         {
-            double MIN_VALUE = -1.0;
-            double MAX_VALUE = 1.0;
-
-            float[] result = new float[numDimension];
-            Random random = new Random();
-
-            for (int i = 0; i < numDimension; i++)
-            {
-                result[i] = (float)(random.NextDouble() * (MAX_VALUE - MIN_VALUE) + MIN_VALUE);
-            }
-
-            return result;
+            // Create a random vector of floats, then normalize it
+            var vector = new float[numDimension];
+            DefaultRandomGenerator.Instance.NextFloats(vector);
+            VectorUtils.Normalize(vector);
+            return vector;
         }
 
         private float[][] GenerateFloatVectors(int numVectors, int numDimensions)
         {
             var result = new float[numVectors][];
-            Random random = new Random();
 
             for (int i = 0; i < numVectors; i++)
             {
