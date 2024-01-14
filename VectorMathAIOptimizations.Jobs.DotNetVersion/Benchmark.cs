@@ -2,11 +2,10 @@
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Running;
-using VectorEmbeddingsSimilarityOptimizations.Util.DotNetVersion;
+using VectorMathAIOptimizations.Util.DotNetVersion;
 
 
-namespace VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion
+namespace VectorMathAIOptimizations.Jobs.DotNetVersion
 {
     [MemoryDiagnoser(true)]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]

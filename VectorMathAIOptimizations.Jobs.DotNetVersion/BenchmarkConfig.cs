@@ -3,7 +3,7 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Reports;
 
-namespace VectorEmbeddingsSimilarityOptimizations.Util.DotNetVersion
+namespace VectorMathAIOptimizations.Util.DotNetVersion
 {
     public class BenchmarkConfig : ManualConfig
     {

@@ -3,7 +3,7 @@ using BenchmarkDotNet.Running;
 using System.Runtime.Intrinsics;
 
 
-namespace VectorEmbeddingsSimilarityOptimizations
+namespace VectorMathAIOptimizations
 {
     public class Program
     {

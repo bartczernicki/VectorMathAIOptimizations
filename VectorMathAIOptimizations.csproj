@@ -17,6 +17,14 @@
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultipleThreads\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
+    <Compile Remove="VectorMathAIOptimizations.Jobs.Complete\**" />
+    <Compile Remove="VectorMathAIOptimizations.Jobs.DotNetVersion\**" />
+    <Compile Remove="VectorMathAIOptimizations.Jobs.VectorAVX\**" />
+    <Compile Remove="VectorMathAIOptimizations.Jobs.VectorCalculation\**" />
+    <Compile Remove="VectorMathAIOptimizations.Jobs.VectorDimensions\**" />
+    <Compile Remove="VectorMathAIOptimizations.Jobs.VectorLinear\**" />
+    <Compile Remove="VectorMathAIOptimizations.Jobs.VectorMultithread\**" />
+    <Compile Remove="VectorMathAIOptimizations.Util\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.Complete\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX\**" />
@@ -26,6 +34,14 @@
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultipleThreads\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
+    <EmbeddedResource Remove="VectorMathAIOptimizations.Jobs.Complete\**" />
+    <EmbeddedResource Remove="VectorMathAIOptimizations.Jobs.DotNetVersion\**" />
+    <EmbeddedResource Remove="VectorMathAIOptimizations.Jobs.VectorAVX\**" />
+    <EmbeddedResource Remove="VectorMathAIOptimizations.Jobs.VectorCalculation\**" />
+    <EmbeddedResource Remove="VectorMathAIOptimizations.Jobs.VectorDimensions\**" />
+    <EmbeddedResource Remove="VectorMathAIOptimizations.Jobs.VectorLinear\**" />
+    <EmbeddedResource Remove="VectorMathAIOptimizations.Jobs.VectorMultithread\**" />
+    <EmbeddedResource Remove="VectorMathAIOptimizations.Util\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.Complete\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX\**" />
@@ -35,6 +51,14 @@
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultipleThreads\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
+    <None Remove="VectorMathAIOptimizations.Jobs.Complete\**" />
+    <None Remove="VectorMathAIOptimizations.Jobs.DotNetVersion\**" />
+    <None Remove="VectorMathAIOptimizations.Jobs.VectorAVX\**" />
+    <None Remove="VectorMathAIOptimizations.Jobs.VectorCalculation\**" />
+    <None Remove="VectorMathAIOptimizations.Jobs.VectorDimensions\**" />
+    <None Remove="VectorMathAIOptimizations.Jobs.VectorLinear\**" />
+    <None Remove="VectorMathAIOptimizations.Jobs.VectorMultithread\**" />
+    <None Remove="VectorMathAIOptimizations.Util\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,14 +67,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.Complete\VectorEmbeddingsSimilarityOptimizations.Jobs.Complete.csproj" />
-    <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion\VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion.csproj" />
-    <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorAVX.csproj" />
-    <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorCalculation.csproj" />
-    <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorDimensions.csproj" />
-    <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear.csproj" />
-    <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread.csproj" />
-    <ProjectReference Include="VectorEmbeddingsSimilarityOptimizations.Util\VectorEmbeddingsSimilarityOptimizations.Util.csproj" />
+    <ProjectReference Include="VectorMathAIOptimizations.Jobs.Complete\VectorMathAIOptimizations.Jobs.Complete.csproj" />
+    <ProjectReference Include="VectorMathAIOptimizations.Jobs.DotNetVersion\VectorMathAIOptimizations.Jobs.DotNetVersion.csproj" />
+    <ProjectReference Include="VectorMathAIOptimizations.Jobs.VectorAVX\VectorMathAIOptimizations.Jobs.VectorAVX.csproj" />
+    <ProjectReference Include="VectorMathAIOptimizations.Jobs.VectorCalculation\VectorMathAIOptimizations.Jobs.VectorCalculation.csproj" />
+    <ProjectReference Include="VectorMathAIOptimizations.Jobs.VectorDimensions\VectorMathAIOptimizations.Jobs.VectorDimensions.csproj" />
+    <ProjectReference Include="VectorMathAIOptimizations.Jobs.VectorLinear\VectorMathAIOptimizations.Jobs.VectorLinear.csproj" />
+    <ProjectReference Include="VectorMathAIOptimizations.Jobs.VectorMultithread\VectorMathAIOptimizations.Jobs.VectorMultithread.csproj" />
+    <ProjectReference Include="VectorMathAIOptimizations.Util\VectorMathAIOptimizations.Util.csproj" />
   </ItemGroup>
 
 </Project>

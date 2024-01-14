@@ -4,7 +4,7 @@ using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Exporters;
 
-namespace VectorEmbeddingsSimilarityOptimizations.Util
+namespace VectorMathAIOptimizations.Util
 {
     // Global configuration used across all benchmarks
     public class BenchmarkConfig : ManualConfig

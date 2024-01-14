@@ -3,9 +3,10 @@ using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
+using System.Threading;
 
 
-namespace VectorEmbeddingsSimilarityOptimizations.Jobs.Complete
+namespace VectorMathAIOptimizations.Jobs.VectorAVX
 {
     [MemoryDiagnoser(true)]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
@@ -16,28 +17,27 @@ namespace VectorEmbeddingsSimilarityOptimizations.Jobs.Complete
     {
         private Util.Vectors? vectors;
 
+        // Dynamically retrieve the supported AVX types on this hardware
+        public IEnumerable<string> SupportedAVXTypes => Util.Vectors.GetSupportedAVXTypes();
+
         [GlobalSetup]
         public void Setup()
         {
             this.vectors = new Util.Vectors(NumberOfVectorsToCreate);
         }
 
-        [Params(100000)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, medium, large)
+        [Params(100000)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, large)
         // 1mil embeddings is roughly 700,000-1mil document paragraphs/phrases with a decent amount of text present
         public int NumberOfVectorsToCreate { get; set; }
 
-        [Benchmark(Baseline = true)]
-        public void CosineSimilarityVectors1536Dimensions()
-        {
-            // Use defaults: 1536 Dimensions, use cosine similarity, use single thread, non-hardware acceleration
-            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, false, "NonHardware");
-        }
+        // property with public setter
+        [ParamsSource(nameof(SupportedAVXTypes))]
+        public string AVXType { get; set; } = string.Empty;
 
         [Benchmark]
-        public void Complete()
+        public void CosineSimilarityVectors1536Dimensions()
         {
-            // Use 768 Dimensions, use dot product, use multiple threads, use AVX acceleration
-            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo768Dimensions, vectors?.TestVectors768Dimensions, false, true, string.Empty);
+            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.TestVectors1536Dimensions, true, false, AVXType);
         }
     }
 }

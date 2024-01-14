@@ -1,4 +1,4 @@
-﻿namespace VectorEmbeddingsSimilarityOptimizations.Util.DotNetVersion
+﻿namespace VectorMathAIOptimizations.Util.DotNetVersion
 {
     public class VectorScore
     {
