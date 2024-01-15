@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
-<title>VectorEmbeddingsSimilarityOptimizations.Jobs.DotNetVersion.Benchmark-20240111-193707</title>
+<title>VectorMathAIOptimizations.Jobs.DotNetVersion.Benchmark-20240115-221139</title>
 
 <style type="text/css">
 	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
@@ -17,8 +17,8 @@ BenchmarkDotNet v0.13.12, Windows 10 (10.0.20348.2227) (Hyper-V)
 AMD EPYC 9V33X, 2 CPU, 24 logical and 24 physical cores
 .NET SDK 8.0.100
   [Host]     : .NET 8.0.0 (8.0.23.53103), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
-  Job-DVVKPG : .NET 6.0.26 (6.0.2623.60508), X64 RyuJIT AVX2
-  Job-ZHBSTY : .NET 8.0.0 (8.0.23.53103), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  Job-ITIBZZ : .NET 6.0.26 (6.0.2623.60508), X64 RyuJIT AVX2
+  Job-RYZFGJ : .NET 8.0.0 (8.0.23.53103), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
 </code></pre>
 <pre><code>RunStrategy=Throughput  Gen0=62.5000  Gen1=31.2500  
 Allocated=3.81 MB  
@@ -27,8 +27,8 @@ Allocated=3.81 MB
 <table>
 <thead><tr><th>Method                         </th><th>Runtime</th><th>NumberOfVectorsToCreate</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Ratio</th><th>RatioSD</th><th>Alloc Ratio</th>
 </tr>
-</thead><tbody><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 6.0</td><td>100000</td><td>23.00 ms</td><td>0.130 ms</td><td>0.115 ms</td><td>baseline</td><td></td><td></td>
-</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 8.0</td><td>100000</td><td>21.18 ms</td><td>0.413 ms</td><td>0.523 ms</td><td>-7%</td><td>2.7%</td><td>-0%</td>
+</thead><tbody><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 6.0</td><td>100000</td><td>22.83 ms</td><td>0.313 ms</td><td>0.293 ms</td><td>baseline</td><td></td><td></td>
+</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>.NET 8.0</td><td>100000</td><td>21.63 ms</td><td>0.325 ms</td><td>0.304 ms</td><td>-5%</td><td>1.6%</td><td>-0%</td>
 </tr></tbody></table>
 </body>
 </html>
