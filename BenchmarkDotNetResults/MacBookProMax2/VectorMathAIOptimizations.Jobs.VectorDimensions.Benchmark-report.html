@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
-<title>VectorEmbeddingsSimilarityOptimizations.Jobs.VectorLinear.Benchmark-20240111-134218</title>
+<title>VectorMathAIOptimizations.Jobs.VectorDimensions.Benchmark-20240115-160734</title>
 
 <style type="text/css">
 	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
@@ -17,18 +17,16 @@ BenchmarkDotNet v0.13.12, Windows 11 (10.0.22621.3007/22H2/2022Update/SunValley2
 Apple Silicon, 8 CPU, 8 logical and 8 physical cores
 .NET SDK 8.0.100
   [Host]     : .NET 8.0.0 (8.0.23.53103), Arm64 RyuJIT AdvSIMD
-  Job-AZKIPH : .NET 8.0.0 (8.0.23.53103), Arm64 RyuJIT AdvSIMD
+  Job-LFPVSB : .NET 8.0.0 (8.0.23.53103), Arm64 RyuJIT AdvSIMD
 </code></pre>
-<pre><code>Runtime=.NET 8.0  RunStrategy=Throughput  Alloc Ratio=  
+<pre><code>Runtime=.NET 8.0  RunStrategy=Throughput  Allocated=39.27 KB  
 </code></pre>
 
 <table>
 <thead><tr><th>Method                         </th><th>NumberOfVectorsToCreate</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Ratio</th><th>RatioSD</th>
 </tr>
-</thead><tbody><tr><td>CosineSimilarityVectors1536Dimensions</td><td>100</td><td>0.0408 ms</td><td>0.0001 ms</td><td>0.0001 ms</td><td>baseline</td><td></td>
-</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>1000</td><td>0.4263 ms</td><td>0.0076 ms</td><td>0.0071 ms</td><td>baseline</td><td></td>
-</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>10000</td><td>4.1235 ms</td><td>0.0171 ms</td><td>0.0160 ms</td><td>baseline</td><td></td>
-</tr><tr><td>CosineSimilarityVectors1536Dimensions</td><td>100000</td><td>44.8590 ms</td><td>0.1648 ms</td><td>0.1541 ms</td><td>baseline</td><td></td>
+</thead><tbody><tr><td>CosineSimilarityVectors1536Dimensions</td><td>1000</td><td>0.4737 ms</td><td>0.0019 ms</td><td>0.0017 ms</td><td>baseline</td><td></td>
+</tr><tr><td>CosineSimilarityVectors768Dimensions</td><td>1000</td><td>0.1894 ms</td><td>0.0017 ms</td><td>0.0015 ms</td><td>-60%</td><td>1.0%</td>
 </tr></tbody></table>
 </body>
 </html>

@@ -102,6 +102,55 @@ namespace VectorMathAIOptimizations.Util
             }
         }
 
+        public static IEnumerable<VectorScore> TopMatchingVectorsNonInlined(ReadOnlySpan<float> vectorToCompareTo, ReadOnlySpan<float[]> vectors,
+            bool useCosineSimilarity, bool multiThreaded, string avxType)
+        {
+            var results = new List<VectorScore>(vectors.Length);
+            var numOfVectors = vectors.Length;
+            var useDotNetAvx = (avxType == "NonHardware") ? false : true;
+
+            if (multiThreaded)
+            {
+                var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = BenchmarkConfig.ProcessorsAvailableAt75Percent };
+                var resultsConcurrentBag = new ConcurrentBag<VectorScore>(); // <- use concurrent collection for parallel loop
+                // You can use an array copy in this simple scenario to make this faster, but most scenarios will share data
+
+                // Need to cast these as ReadOnlyMemory to avoid ref struct error or do any unsafe pointers
+                // This probably can be optimized
+                var vectorToCompareToMemory = new ReadOnlyMemory<float>(vectorToCompareTo.ToArray());
+                var vectorsMemory = new ReadOnlyMemory<float[]>(vectors.ToArray());
+
+                Parallel.For(0, numOfVectors, parallelOptions,
+                 i =>
+                 {
+                     var singleVector = vectorsMemory.Slice(i, 1).Span[0].AsSpan();
+                     var vectorToCompareToArray = vectorToCompareToMemory.Span;
+
+
+                     var similarityScore = useCosineSimilarity ? BenchmarkCosineSimilarity(vectorToCompareToArray, singleVector, useDotNetAvx, avxType) :
+                         TensorPrimitives.Dot(vectorToCompareToArray, singleVector);
+
+                     resultsConcurrentBag.Add(new VectorScore { VectorIndex = i, SimilarityScore = similarityScore });
+                 });
+
+                return resultsConcurrentBag.OrderByDescending(a => a.SimilarityScore).Take(50);
+            }
+            else
+            {
+                for (var i = 0; i != numOfVectors; i++)
+                {
+                    ReadOnlySpan<float> singleVector = vectors.Slice(i, 1)[0];
+
+                    var similarityScore = useCosineSimilarity ? BenchmarkCosineSimilarity(vectorToCompareTo, singleVector, useDotNetAvx, avxType) :
+                        TensorPrimitives.Dot(vectorToCompareTo, singleVector);
+
+                    results.Add(new VectorScore { VectorIndex = i, SimilarityScore = similarityScore });
+                }
+
+                return results.OrderByDescending(a => a.SimilarityScore).Take(50);
+            }
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerable<string> GetSupportedAVXTypes()
         {
