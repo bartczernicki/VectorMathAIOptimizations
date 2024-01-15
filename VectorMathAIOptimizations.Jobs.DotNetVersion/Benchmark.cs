@@ -2,6 +2,7 @@
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
+using System.Runtime.CompilerServices;
 using VectorMathAIOptimizations.Util.DotNetVersion;
 
 
