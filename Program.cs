@@ -111,6 +111,12 @@ namespace VectorMathAIOptimizations
             {
                 // Benchmark - Vector calculations using Multi-Threading
                 Console.WriteLine(string.Format("Using {0} CPU cores for multithreaded benchmark.", Util.BenchmarkConfig.ProcessorsAvailableAt75Percent));
+                #if NET8_0_OR_GREATER
+                Console.WriteLine("AVX-128 available: " + Vector128.IsHardwareAccelerated.ToString());
+                Console.WriteLine("AVX-256 available: " + Vector256.IsHardwareAccelerated.ToString());
+                Console.WriteLine("AVX-512 available: " + Vector512.IsHardwareAccelerated.ToString());
+                #endif
+
                 summary = BenchmarkRunner.Run<Jobs.Complete.Benchmark>();
             }
 
