@@ -14,7 +14,7 @@ namespace VectorMathAIOptimizations.Util
 {
     public class Vectors
     {
-        private const string PARQUET_FILES_DIRECTORY = @"e:\data\dbpedia-entities-openai-1M\";
+        private const string PARQUET_FILES_DIRECTORY = @"c:\data\dbpedia-entities-openai-1M\";
         private const string PARQUET_FILE_PATH_SUFFIX = @"*.parquet";
         private const string GRAPH_FILE_NAME = "graph_M10.hnsw";
 
