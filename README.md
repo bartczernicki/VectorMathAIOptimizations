@@ -10,7 +10,7 @@ Running the Application & Features:
 ![Benchmark Process](https://github.com/bartczernicki/VectorEmbeddingsSimilarityOptimizations/blob/master/Images/BenchmarkProcess.gif)
 
 **Benchmark - VectorLinear**  
-Goals of this benchmark is to showcase that a simple vector math approach will scale linear. For example, 1000 vectors will take ~10x longer to process similarity math then 100 vectors.  
+Goal of this benchmark is to showcase that a simple vector math approach will scale linearly. For example, 1000 vectors will take ~10x longer to process similarity math then 100 vectors. This performance degredation is acceptable for smaller vector views/indexes, but unworkable for larger sets.
 ```
 | Method                                | NumberOfVectorsToCreate | Mean       | Error     | StdDev    | Ratio    | RatioSD | 
 |-------------------------------------- |------------------------ |-----------:|----------:|----------:|---------:|--------:|-
@@ -21,4 +21,20 @@ Goals of this benchmark is to showcase that a simple vector math approach will s
 | CosineSimilarityVectors1536Dimensions | 10000                   |  1.1939 ms | 0.0027 ms | 0.0025 ms | baseline |         | 
 |                                       |                         |            |           |           |          |         | 
 | CosineSimilarityVectors1536Dimensions | 100000                  | 21.8083 ms | 0.1558 ms | 0.1457 ms | baseline |         | 
+```
+**Benchmark - VectorCalculation**
+Goal of this benchmark is to show that if vectors are normalized, CosineSimilarity and DotProduct calculations will return the same answer with DotProduct being faster to calculate. The DotProduct formula simply requires less math, hencse is faster.
+```
+| Method                                | NumberOfVectorsToCreate | Mean      | Error     | StdDev    | Ratio    | RatioSD | 
+|-------------------------------------- |------------------------ |----------:|----------:|----------:|---------:|--------:|-
+| CosineSimilarityVectors1536Dimensions | 1000                    | 0.1195 ms | 0.0001 ms | 0.0001 ms | baseline |         | 
+| DotProductVectors1536Dimensions       | 1000                    | 0.0947 ms | 0.0000 ms | 0.0000 ms |     -21% |    0.1% |
+```
+**Benchmark - VectorDimensions**  
+Goal of this benchmark is to show that the size of the dimensions of vectors matters for performance. OpenAI's ADAv2 model uses a dimension size of 1536, but there are models that output much smaller dimension sizes (768 for example).
+```
+| Method                                | NumberOfVectorsToCreate | Mean      | Error     | StdDev    | Ratio    | RatioSD | 
+|-------------------------------------- |------------------------ |----------:|----------:|----------:|---------:|--------:|-
+| CosineSimilarityVectors1536Dimensions | 1000                    | 0.1196 ms | 0.0004 ms | 0.0004 ms | baseline |         | 
+| CosineSimilarityVectors768Dimensions  | 1000                    | 0.0648 ms | 0.0001 ms | 0.0001 ms |     -46% |    0.4% | 
 ```
