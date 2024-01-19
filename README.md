@@ -76,7 +76,7 @@ Azure AI Search - HNSW Implementation: https://learn.microsoft.com/en-us/azure/s
 HNSW implementation in C#: https://github.com/bartczernicki/hnsw-sharp  
 
 Approximate Nearest Neighbor (ANN) is fast at searching. For a 1M vector data set, it can scale to more than 1,000 searches/second! What is the tradeoff?  
-1) Building an ANN graph is expensive and architectural considerations need to made for maintaining the graph/updating  
+1) Building an ANN graph is expensive and architectural considerations need to made for maintaining the graph/updating the records in real-time. These patterns have existed in database systems for quite some time. For example, SQL Server ColumnStore Indexes have delta rowgroups as buffers until the Columnstore index is rebuilt completely: https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview?view=sql-server-ver16#delta-rowgroup  
 2) The first word in ANN is **approximate**. This is meant to be explicit as you are sacrificing perfect recall (missing some records being retrieved) for the dramatic speed increases  
 ```
 | Method              | Mean        | Error     | StdDev    | Ratio    | RatioSD | 
