@@ -55,7 +55,7 @@ Goal of this benchmark is to show that AVX hardware extensions (SIMD math) with 
 | CosineSimilarityVectors1536Dimensions | 100000                  | Vector512   |  20.97 ms | 0.143 ms | 0.127 ms | 
 ```  
 **6) Benchmark - DotNetVersion**  
-.NET continues to innovate with each yearly release. .NET 8 LTS includes numerous performance improvments, building upong the many .NET 6, 7 performance focused improvements. Therefore, a simple re-compile to the latest version can lead to performance improvements without any major changes.  
+.NET continues to innovate with each yearly release. .NET 8 LTS includes numerous performance improvments, building upong the many .NET 6, 7 performance focused improvements. Therefore, a simple re-compile to the latest version can lead to performance improvements without any major changes. .NET 8 performance improvments: https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-8/  
 ```
 | Method                                | Runtime  | NumberOfVectorsToCreate | Mean     | Error    | StdDev   | Ratio    | RatioSD | Alloc Ratio |
 |-------------------------------------- |--------- |------------------------ |---------:|---------:|---------:|---------:|--------:|------------:|
