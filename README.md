@@ -74,6 +74,10 @@ The goal of this benchmark is to curate all of these benchmarks into single perf
 In the previous 7 benchmarks used generated vector data and used a simple list/array of floating point vectors. The goal of this benchmark is to use real OpenAI Ada-v2 embeddings at scale with 1 million vectors, while finding similarity from an actual "question" using embeddings. This benchmark uses most of the efficiencies from #7 (minus the smaller dimension size) in the baseline run. In addition to the real vector data at scale, a custom approximate nearest neighbor (ANN) graph data structure is used to dramatically improve performance.  
 Azure AI Search - HNSW Implementation: https://learn.microsoft.com/en-us/azure/search/vector-search-ranking  
 HNSW implementation in C#: https://github.com/bartczernicki/hnsw-sharp  
+
+Approximate Nearest Neighbor (ANN) is fast at searching. For a 1M vector data set, it can scale to more than 1,000 searches/second! What is the tradeoff?  
+1) Building an ANN graph is expensive and architectural considerations need to made for maintaining the graph/updating  
+2) The first word in ANN is **approximate**. This is meant to be explicit as you are sacrificing perfect recall (missing some records being retrieved) for the dramatic speed increases  
 ```
 | Method              | Mean        | Error     | StdDev    | Ratio    | RatioSD | 
 |-------------------- |------------:|----------:|----------:|---------:|--------:|-
