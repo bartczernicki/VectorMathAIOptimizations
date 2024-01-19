@@ -96,7 +96,7 @@ The good news is that ANN graphs can also include the performance improvements m
 ```
 | Method              | Mean        | Ratio       | 
 |-------------------- |------------:|------------:|-
-| ANN - 1 (baseline)  |     6647 s  |    baseline |
-| ANN - 2             |     4712 s  |     -29.11% |
-| ANN - 3             |     1252 s  |     -81.16% |
+| ANN - 1 (baseline)  |    6,647 s  |    baseline |
+| ANN - 2             |    4,712 s  |     -29.11% |
+| ANN - 3             |    1,252 s  |     -81.16% |
 ```
