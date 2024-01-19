@@ -15,6 +15,7 @@ namespace VectorMathAIOptimizations
             Console.Title = "Benchmark - Vector Math AI Optimizations";
 
             var aciiArt = """
+
                 \  /_  __|_ _ ._ |\/| _._|_|_  
                  \/(/_(_ |_(_)|  |  |(_| |_| | 
 
