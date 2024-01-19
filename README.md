@@ -38,10 +38,18 @@ Goal of this benchmark is to show that the size of the dimensions of vectors mat
 | CosineSimilarityVectors1536Dimensions | 1000                    | 0.1196 ms | 0.0004 ms | 0.0004 ms | baseline |         | 
 | CosineSimilarityVectors768Dimensions  | 1000                    | 0.0648 ms | 0.0001 ms | 0.0001 ms |     -46% |    0.4% | 
 ```
-**Benchmark - Multithread**
+**Benchmark - Multithread**  
+Goal of this benchmark is to show that vector math calculations are independent, which means they are embarassingly parallelizable. Leveraging multithreading on large vector sets can improve the performance dramatically of vector search.  
 ```
 | Method                                           | NumberOfVectorsToCreate | Mean      | Error     | StdDev    | Ratio    | RatioSD | 
 |------------------------------------------------- |------------------------ |----------:|----------:|----------:|---------:|--------:|-
 | CosineSimilarityVectors1536Dimensions            | 100000                  | 21.605 ms | 0.3985 ms | 0.3727 ms | baseline |         | 
 | CosineSimilarityVectors1536DimensionsMultithread | 100000                  |  6.523 ms | 0.0808 ms | 0.0756 ms |     -70% |    1.6% | 
 ```
+**Benchmark - VectorAVX**  
+```
+| Method                                | NumberOfVectorsToCreate | AVXType     | Mean      | Error    | StdDev   | 
+|-------------------------------------- |------------------------ |------------ |----------:|---------:|---------:|-
+| CosineSimilarityVectors1536Dimensions | 100000                  | NonHardware | 167.29 ms | 0.231 ms | 0.216 ms | 
+| CosineSimilarityVectors1536Dimensions | 100000                  | Vector512   |  20.97 ms | 0.143 ms | 0.127 ms | 
+```  
