@@ -19,7 +19,10 @@ namespace VectorMathAIOptimizations.Jobs.CompleteRealDataANN
         [GlobalSetup]
         public void Setup()
         {
+            // Load the vectors
             this.vectors = new Util.Vectors(1, true);
+            // Load the HNSW graph
+            //this.vectors?.LoadHNSWGraph();
         }
 
         [Benchmark(Baseline = true)]
@@ -27,6 +30,16 @@ namespace VectorMathAIOptimizations.Jobs.CompleteRealDataANN
         {
             // Real Data with Optimizations - use dot product, use multiple threads, use AVX acceleration
             var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.DbPediaVectors, false, true, string.Empty);
+        }
+
+        [Benchmark]
+        public void CompleteRealDataANN()
+        {
+            // Real Data with Optimizations - use dot product, use multiple threads, use AVX acceleration
+            var vectorToSearch = vectors?.DbPediaVectors?[0];
+            //Console.WriteLine($"Vector to search: {vectorToSearch}");
+            var results = vectors?.HNSWGraph?.KNNSearch(vectorToSearch, 50);
+            //Console.WriteLine($"Results: {results?.Count}");
         }
     }
 }

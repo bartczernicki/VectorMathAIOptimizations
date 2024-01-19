@@ -2,6 +2,7 @@
 using HNSW.Net;
 using ParquetSharp;
 using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.Numerics.Tensors;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -15,6 +16,7 @@ namespace VectorMathAIOptimizations.Util
     {
         private const string PARQUET_FILES_DIRECTORY = @"e:\data\dbpedia-entities-openai-1M\";
         private const string PARQUET_FILE_PATH_SUFFIX = @"*.parquet";
+        private const string GRAPH_FILE_NAME = "graph_M10.hnsw";
 
         // Fields
         public float[]? VectorToCompareTo768Dimensions { get; set; }
@@ -22,6 +24,9 @@ namespace VectorMathAIOptimizations.Util
         public float[]? VectorToCompareTo1536Dimensions { get; set; }
         public float[][]? TestVectors1536Dimensions { get; set; }
         public float[][]? DbPediaVectors { get; set; }
+        public IReadOnlyList<float[]>? DbPediaQuestions { get; set; }
+
+        public SmallWorld<float[], float>? HNSWGraph { get; set; }
 
         public Vectors(int numberOfVectorsToCreate, bool loadRealData = false)
         {
@@ -41,6 +46,9 @@ namespace VectorMathAIOptimizations.Util
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        /// <summary>
+        /// Returns a random float normalized vector of the specified dimension size
+        /// </summary>
         private float[] GenerateFloatVector(int numDimension)
         {
             // Create a random vector of floats, then normalize it
@@ -51,6 +59,9 @@ namespace VectorMathAIOptimizations.Util
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        /// <summary>
+        /// Returns a an array of random float normalized vectors of the specified dimension size
+        /// </summary>
         private float[][] GenerateFloatVectors(int numVectors, int numDimensions)
         {
             var result = new float[numVectors][];
@@ -133,6 +144,9 @@ namespace VectorMathAIOptimizations.Util
 
             // Enforce order as this is important for the graph to be built correctly
             var dataSetDbPediasOrdered = dataSetDbPedias.OrderBy(a => a.Id).ToList();
+
+            this.loadHNSWGraph(dataSetDbPediasOrdered.Select(x => x.Embeddings.ToArray()).ToList());
+
             this.DbPediaVectors = dataSetDbPediasOrdered.Select(x => x.Embeddings.ToArray()).ToArray();
 
             //var floatVectors = new float[dataSetDbPediasOrdered.Count()][];
@@ -142,7 +156,30 @@ namespace VectorMathAIOptimizations.Util
             //    floatVectors[i] = floatArray;
             //}
 
-            Console.WriteLine($"Total Records: {recordCount} - Total Records Ordereddd: {this.DbPediaVectors.Length}");
+            Console.WriteLine($"Total Records: {recordCount} - Total Records Ordered: {this.DbPediaVectors.Length}");
+        }
+
+        private void loadHNSWGraph(List<float[]> vectors)
+        {
+            var stopWatch = Stopwatch.StartNew();
+            stopWatch.Start();
+            var filePath = Path.Combine(PARQUET_FILES_DIRECTORY, GRAPH_FILE_NAME);
+
+            using (var f = File.OpenRead(filePath))
+            {
+                this.HNSWGraph = SmallWorld<float[], float>.DeserializeGraph(vectors, DotProductDistance.DotProductOptimized, DefaultRandomGenerator.Instance, f, true);
+            }
+
+            stopWatch.Stop();
+            Console.WriteLine($"Time Taken to load ANN (HNSW) Graph: {stopWatch.ElapsedMilliseconds} ms.");
+        }
+
+        private void loadRealQuestionEmbeddings()
+        {
+            // load actual question
+            var questionData = File.ReadAllText(@"question.json");
+            var questions = System.Text.Json.JsonSerializer.Deserialize<List<Question>>(questionData);
+            this.DbPediaQuestions = questions?.Select(a => a.Embeddings.ToArray()).ToList();
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -172,7 +209,6 @@ namespace VectorMathAIOptimizations.Util
                  {
                      var singleVector = vectorsMemory.Slice(i, 1).Span[0].AsSpan();
                      var vectorToCompareToArray = vectorToCompareToMemory.Span;
-
 
                      var similarityScore = useCosineSimilarity ? BenchmarkCosineSimilarity(vectorToCompareToArray, singleVector, useDotNetAvx, avxType) :
                          TensorPrimitives.Dot(vectorToCompareToArray, singleVector);
