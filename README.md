@@ -5,7 +5,7 @@ Running the Application & Features:
 - Not Required: No OpenAI, Azure OpenAI nor other "AI or cloud" keys required. Benchmark was done to mimic performance using simple internal generated (mocked) vectors  
 - Running the Application: Build the application in Visual Studio IDE, Select run in "Release" mode (required for benchmarking), select the benchmark number and click enter to run  
 - Tweaking or Configuring: Each benchmark is a seperate DLL (for seperation concerns), which can be configured individually (i.e. amount of vectors) or optimized seperately with compiler directives. This allows for individual reports to be viewed and analyzed
-- Real Data (1M vectors) located: https://huggingface.co/datasets/KShivendu/dbpedia-entities-openai-1M   
+- Real Data (1M vectors) - parquet files location: https://huggingface.co/datasets/KShivendu/dbpedia-entities-openai-1M   
 - Uses HNSW algorithm from Microsoft (fork optimized): https://github.com/bartczernicki/hnsw-sharp  
 ![Benchmark Process](https://github.com/bartczernicki/VectorEmbeddingsSimilarityOptimizations/blob/master/Images/BenchmarkProcess.gif)
 
