@@ -23,7 +23,7 @@ Goal of this benchmark is to showcase that a simple vector math approach will sc
 | CosineSimilarityVectors1536Dimensions | 100000                  | 21.8083 ms | 0.1558 ms | 0.1457 ms | baseline |         | 
 ```
 **2) Benchmark - VectorCalculation**  
-Goal of this benchmark is to show that if vectors are normalized, CosineSimilarity and DotProduct calculations will return the same answer with DotProduct being faster to calculate. The DotProduct formula simply requires less math, hencse is faster.
+Goal of this benchmark is to show that if vectors are normalized, CosineSimilarity and DotProduct calculations will return the same answer with DotProduct being faster to calculate. The DotProduct formula simply requires less math, hencse is faster.  
 OpenAI Documentation appears to be incorrect: https://help.openai.com/en/articles/6824809-embeddings-frequently-asked-questions  
 You can pre-caculate & cache the denominator of the vectors in the search index: https://image3.slideserve.com/6563482/cosine-similarity-l.jpg  
 ```
