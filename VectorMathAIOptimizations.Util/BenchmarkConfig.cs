@@ -10,8 +10,8 @@ namespace VectorMathAIOptimizations.Util
     public class BenchmarkConfig : ManualConfig
     {
         // Processor Count (set at 75% in code)
-        // Only used if multi-threading is turned on
-        public static int ProcessorsAvailableAt75Percent = (int)(0.75 * Environment.ProcessorCount);
+        // Note: Only used if multi-threading is turned on
+        public static int ProcessorsAvailableAt75Percent = (int) Math.Ceiling((0.75 * Environment.ProcessorCount));
 
         public BenchmarkConfig()
         {

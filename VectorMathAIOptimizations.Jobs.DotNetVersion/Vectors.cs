@@ -28,6 +28,7 @@ namespace VectorMathAIOptimizations.Util.DotNetVersion
             TestVectors1536Dimensions = GenerateFloatVectors(numberOfVectorsToCreate, 1536);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private float[] GenerateFloatVector(int numDimension)
         {
             double MIN_VALUE = -1.0;
@@ -44,6 +45,7 @@ namespace VectorMathAIOptimizations.Util.DotNetVersion
             return result;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private float[][] GenerateFloatVectors(int numVectors, int numDimensions)
         {
             var result = new float[numVectors][];
@@ -57,6 +59,7 @@ namespace VectorMathAIOptimizations.Util.DotNetVersion
             return result;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerable<VectorScore> TopMatchingVectors(ReadOnlySpan<float> vectorToCompareTo, ReadOnlySpan<float[]> vectors,
             bool useCosineSimilarity, bool multiThreaded, string avxType)
         {

@@ -29,6 +29,7 @@ namespace VectorMathAIOptimizations.Util
             TestVectors1536Dimensions = GenerateFloatVectors(numberOfVectorsToCreate, 1536);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private float[] GenerateFloatVector(int numDimension)
         {
             // Create a random vector of floats, then normalize it
@@ -38,6 +39,7 @@ namespace VectorMathAIOptimizations.Util
             return vector;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private float[][] GenerateFloatVectors(int numVectors, int numDimensions)
         {
             var result = new float[numVectors][];
@@ -50,6 +52,7 @@ namespace VectorMathAIOptimizations.Util
             return result;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerable<VectorScore> TopMatchingVectors(ReadOnlySpan<float> vectorToCompareTo, ReadOnlySpan<float[]> vectors,
             bool useCosineSimilarity, bool multiThreaded, string avxType)
         {
@@ -99,6 +102,7 @@ namespace VectorMathAIOptimizations.Util
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerable<string> GetSupportedAVXTypes()
         {
             var supportedAVXTypes = new List<string> { "NonHardware" };
@@ -119,6 +123,7 @@ namespace VectorMathAIOptimizations.Util
             return supportedAVXTypes;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float BenchmarkCosineSimilarity(ReadOnlySpan<float> x, ReadOnlySpan<float> y, bool useDotNetFramework, string avxType)
         {
             if (useDotNetFramework)
