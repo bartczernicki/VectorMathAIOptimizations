@@ -8,3 +8,16 @@ Running the Application & Features:
 - Real Data (1M vectors) located: https://huggingface.co/datasets/KShivendu/dbpedia-entities-openai-1M   
 - Uses HNSW algorithm from Microsoft (fork optimized): https://github.com/bartczernicki/hnsw-sharp  
 ![Benchmark Process](https://github.com/bartczernicki/VectorEmbeddingsSimilarityOptimizations/blob/master/Images/BenchmarkProcess.gif)
+
+**Benchmark - VectorLinear**  
+Goals of this benchmark is to showcase that a simple vector math approach will scale linear. For example, 1000 vectors will take ~10x longer to process similarity math then 100 vectors.  
+
+| Method                                | NumberOfVectorsToCreate | Mean       | Error     | StdDev    | Ratio    | RatioSD | 
+|-------------------------------------- |------------------------ |-----------:|----------:|----------:|---------:|--------:|-
+| CosineSimilarityVectors1536Dimensions | 100                     |  0.0115 ms | 0.0000 ms | 0.0000 ms | baseline |         | 
+|                                       |                         |            |           |           |          |         | 
+| CosineSimilarityVectors1536Dimensions | 1000                    |  0.1191 ms | 0.0001 ms | 0.0001 ms | baseline |         | 
+|                                       |                         |            |           |           |          |         | 
+| CosineSimilarityVectors1536Dimensions | 10000                   |  1.1939 ms | 0.0027 ms | 0.0025 ms | baseline |         | 
+|                                       |                         |            |           |           |          |         | 
+| CosineSimilarityVectors1536Dimensions | 100000                  | 21.8083 ms | 0.1558 ms | 0.1457 ms | baseline |         | 
