@@ -13,7 +13,7 @@ namespace VectorMathAIOptimizations.Util
 {
     public class Vectors
     {
-        private const string PARQUET_FILES_DIRECTORY = @"e:\data\dbpedia-entities-openai-1M1\";
+        private const string PARQUET_FILES_DIRECTORY = @"e:\data\dbpedia-entities-openai-1M\";
         private const string PARQUET_FILE_PATH_SUFFIX = @"*.parquet";
 
         // Fields
@@ -133,8 +133,16 @@ namespace VectorMathAIOptimizations.Util
 
             // Enforce order as this is important for the graph to be built correctly
             var dataSetDbPediasOrdered = dataSetDbPedias.OrderBy(a => a.Id).ToList();
-            var DbPediaVectors = dataSetDbPediasOrdered.Select(x => x.Embeddings.ToArray()).ToArray();
-            Console.WriteLine($"Total Records: {recordCount} - Total Records Ordereddd: {DbPediaVectors.Length}");
+            this.DbPediaVectors = dataSetDbPediasOrdered.Select(x => x.Embeddings.ToArray()).ToArray();
+
+            //var floatVectors = new float[dataSetDbPediasOrdered.Count()][];
+            //for (int i = 0; i < dataSetDbPediasOrdered.Count(); i++)
+            //{
+            //    var floatArray = dataSetDbPediasOrdered[i].Embeddings.ToArray();
+            //    floatVectors[i] = floatArray;
+            //}
+
+            Console.WriteLine($"Total Records: {recordCount} - Total Records Ordereddd: {this.DbPediaVectors.Length}");
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -144,7 +152,7 @@ namespace VectorMathAIOptimizations.Util
             var results = new List<VectorScore>(vectors.Length);
             var numOfVectors = vectors.Length;
 
-            Console.WriteLine($"Vector Count: {numOfVectors}");
+            // Console.WriteLine($"Vector Count: {numOfVectors}");
 
             var useDotNetAvx = (avxType == "NonHardware") ? false : true;
 
