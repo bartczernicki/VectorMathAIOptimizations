@@ -12,25 +12,16 @@ namespace VectorMathAIOptimizations
             // How BenchmarkDotNet Looks at Projects to find your benchmark DLLs
             // https://stackoverflow.com/questions/67766289/benchmarkdotnet-unable-to-find-tests-when-it-faces-weird-solution-structure  
 
-            Console.Title = "Benchmark - Vector Optimizations";
+            Console.Title = "Benchmark - Vector Math AI Optimizations";
 
             var aciiArt = """
-                 ____                  _                          _    
-                |  _ \                | |                        | |   
-                | |_) | ___ _ __   ___| |__  _ __ ___   __ _ _ __| | __
-                |  _ < / _ \ '_ \ / __| '_ \| '_ ` _ \ / _` | '__| |/ /
-                | |_) |  __/ | | | (__| | | | | | | | | (_| | |  |   < 
-                |____/ \___|_| |_|\___|_| |_|_| |_| |_|\__,_|_|  |_|\_\
+                \  /_  __|_ _ ._ |\/| _._|_|_  
+                 \/(/_(_ |_(_)|  |  |(_| |_| | 
 
-
-                __      __       _                ____        _   _           _          _   _                 
-                \ \    / /      | |              / __ \      | | (_)         (_)        | | (_)                
-                 \ \  / /__  ___| |_ ___  _ __  | |  | |_ __ | |_ _ _ __ ___  _ ______ _| |_ _  ___  _ __  ___ 
-                  \ \/ / _ \/ __| __/ _ \| '__| | |  | | '_ \| __| | '_ ` _ \| |_  / _` | __| |/ _ \| '_ \/ __|
-                   \  /  __/ (__| || (_) | |    | |__| | |_) | |_| | | | | | | |/ / (_| | |_| | (_) | | | \__ \
-                    \/ \___|\___|\__\___/|_|     \____/| .__/ \__|_|_| |_| |_|_/___\__,_|\__|_|\___/|_| |_|___/
-                                                       | |                                                     
-                                                       |_|                                                                                                    
+                    ___   _                               
+                 /\  |   / \.__|_o._ _ o_  _._|_o _ ._  _ 
+                /--\_|_  \_/|_)|_|| | ||/_(_| |_|(_)| |_> 
+                            |                                                                                                                                                                                                                                                     
                 """;
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(aciiArt);
@@ -51,12 +42,14 @@ namespace VectorMathAIOptimizations
                 Console.WriteLine("5) AVX Hardware Benchmark - Compares performance of AVX hardware acceleration vs no-acceleration.");
                 Console.WriteLine("6) .NET Version Benchmark - Compares Different .NET versions: 6.0 vs 8.0.");
                 Console.WriteLine("7) Complete Benchmark - Compares performance of all best practices combined.");
+                Console.WriteLine("...");
+                Console.WriteLine("8) Complete Real Data & ANN Benchmark - Using Real Data (1M Vectors) & ANN Graph Optimizations.");
 
                 var insertedText = Console.ReadLine() ?? string.Empty;
                 string trimmedInput = insertedText.Trim();
                 
-                // check if the trimmedInput is between 1 and 7 (inclusive)
-                if (Enumerable.Range(1, 7).Contains(Int32.Parse(trimmedInput)) == true)
+                // check if the trimmedInput is between 1 and 8 (inclusive)
+                if (Enumerable.Range(1, 8).Contains(Int32.Parse(trimmedInput)) == true)
                 {
                     validInput = true;
                     selectedProcessingChoice = (ProcessingOptions)Int32.Parse(trimmedInput);
@@ -100,19 +93,39 @@ namespace VectorMathAIOptimizations
             else if (selectedProcessingChoice == ProcessingOptions.VectorAVX)
             {
                 // Benchmark - Vector with hardware AVX Optimizations (SIMD Math)
-                #if NET8_0_OR_GREATER
+#if NET8_0_OR_GREATER
                 Console.WriteLine("AVX-128 available: " + Vector128.IsHardwareAccelerated.ToString());
                 Console.WriteLine("AVX-256 available: " + Vector256.IsHardwareAccelerated.ToString());
                 Console.WriteLine("AVX-512 available: " + Vector512.IsHardwareAccelerated.ToString());
-                #endif
+#endif
                 summary = BenchmarkRunner.Run<Jobs.VectorAVX.Benchmark>();
             }
             else if (selectedProcessingChoice == ProcessingOptions.Complete)
             {
                 // Benchmark - Vector calculations using Multi-Threading
                 Console.WriteLine(string.Format("Using {0} CPU cores for multithreaded benchmark.", Util.BenchmarkConfig.ProcessorsAvailableAt75Percent));
+#if NET8_0_OR_GREATER
+                Console.WriteLine("AVX-128 available: " + Vector128.IsHardwareAccelerated.ToString());
+                Console.WriteLine("AVX-256 available: " + Vector256.IsHardwareAccelerated.ToString());
+                Console.WriteLine("AVX-512 available: " + Vector512.IsHardwareAccelerated.ToString());
+#endif
+
                 summary = BenchmarkRunner.Run<Jobs.Complete.Benchmark>();
             }
+            else if (selectedProcessingChoice == ProcessingOptions.CompleteRealDataANN)
+            {
+                // Benchmark - List vector count, CPU cores and AVX hardware acceleration
+                Console.WriteLine("Vector Count: 1,000,000");
+                Console.WriteLine(string.Format("Using {0} CPU cores for multithreaded benchmark.", Util.BenchmarkConfig.ProcessorsAvailableAt75Percent));
+#if NET8_0_OR_GREATER
+                Console.WriteLine("AVX-128 available: " + Vector128.IsHardwareAccelerated.ToString());
+                Console.WriteLine("AVX-256 available: " + Vector256.IsHardwareAccelerated.ToString());
+                Console.WriteLine("AVX-512 available: " + Vector512.IsHardwareAccelerated.ToString());
+#endif
+
+                summary = BenchmarkRunner.Run<Jobs.Complete.Benchmark>();
+            }
+
 
             // Print Benchmark results
             Console.WriteLine(summary?.ToString());

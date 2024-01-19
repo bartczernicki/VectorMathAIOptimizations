@@ -15,6 +15,7 @@ namespace VectorMathAIOptimizations
         VectorMultithread = 4,
         VectorAVX = 5,
         DotNetVersion = 6,
-        Complete = 7
+        Complete = 7,
+        CompleteRealDataANN = 8
     }
 }

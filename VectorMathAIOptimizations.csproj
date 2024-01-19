@@ -17,6 +17,7 @@
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultipleThreads\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\**" />
     <Compile Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
+    <Compile Remove="VectorMathAIOptimizations.Jobs.CompleteRealDataANN\**" />
     <Compile Remove="VectorMathAIOptimizations.Jobs.Complete\**" />
     <Compile Remove="VectorMathAIOptimizations.Jobs.DotNetVersion\**" />
     <Compile Remove="VectorMathAIOptimizations.Jobs.VectorAVX\**" />
@@ -34,6 +35,7 @@
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultipleThreads\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\**" />
     <EmbeddedResource Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
+    <EmbeddedResource Remove="VectorMathAIOptimizations.Jobs.CompleteRealDataANN\**" />
     <EmbeddedResource Remove="VectorMathAIOptimizations.Jobs.Complete\**" />
     <EmbeddedResource Remove="VectorMathAIOptimizations.Jobs.DotNetVersion\**" />
     <EmbeddedResource Remove="VectorMathAIOptimizations.Jobs.VectorAVX\**" />
@@ -51,6 +53,7 @@
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultipleThreads\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Jobs.VectorMultithread\**" />
     <None Remove="VectorEmbeddingsSimilarityOptimizations.Util\**" />
+    <None Remove="VectorMathAIOptimizations.Jobs.CompleteRealDataANN\**" />
     <None Remove="VectorMathAIOptimizations.Jobs.Complete\**" />
     <None Remove="VectorMathAIOptimizations.Jobs.DotNetVersion\**" />
     <None Remove="VectorMathAIOptimizations.Jobs.VectorAVX\**" />
@@ -67,6 +70,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="VectorMathAIOptimizations.Jobs.CompleteRealDataANN\VectorMathAIOptimizations.Jobs.CompleteRealDataANN.csproj" />
     <ProjectReference Include="VectorMathAIOptimizations.Jobs.Complete\VectorMathAIOptimizations.Jobs.Complete.csproj" />
     <ProjectReference Include="VectorMathAIOptimizations.Jobs.DotNetVersion\VectorMathAIOptimizations.Jobs.DotNetVersion.csproj" />
     <ProjectReference Include="VectorMathAIOptimizations.Jobs.VectorAVX\VectorMathAIOptimizations.Jobs.VectorAVX.csproj" />
