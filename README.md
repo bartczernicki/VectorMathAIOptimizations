@@ -38,3 +38,10 @@ Goal of this benchmark is to show that the size of the dimensions of vectors mat
 | CosineSimilarityVectors1536Dimensions | 1000                    | 0.1196 ms | 0.0004 ms | 0.0004 ms | baseline |         | 
 | CosineSimilarityVectors768Dimensions  | 1000                    | 0.0648 ms | 0.0001 ms | 0.0001 ms |     -46% |    0.4% | 
 ```
+**Benchmark - Multithread**
+```
+| Method                                           | NumberOfVectorsToCreate | Mean      | Error     | StdDev    | Ratio    | RatioSD | 
+|------------------------------------------------- |------------------------ |----------:|----------:|----------:|---------:|--------:|-
+| CosineSimilarityVectors1536Dimensions            | 100000                  | 21.605 ms | 0.3985 ms | 0.3727 ms | baseline |         | 
+| CosineSimilarityVectors1536DimensionsMultithread | 100000                  |  6.523 ms | 0.0808 ms | 0.0756 ms |     -70% |    1.6% | 
+```
