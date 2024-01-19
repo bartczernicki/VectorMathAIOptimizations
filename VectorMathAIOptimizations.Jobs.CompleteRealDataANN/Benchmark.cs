@@ -19,18 +19,14 @@ namespace VectorMathAIOptimizations.Jobs.CompleteRealDataANN
         [GlobalSetup]
         public void Setup()
         {
-            this.vectors = new Util.Vectors(NumberOfVectorsToCreate);
+            this.vectors = new Util.Vectors(1, true);
         }
-
-        [Params(100)] //<-- Change this to determine the amount of vectors to "mimic" a Vector database  (very small, medium, large)
-        // 1mil embeddings is roughly 700,000-1mil document paragraphs/phrases with a decent amount of text present
-        public int NumberOfVectorsToCreate { get; set; }
 
         [Benchmark(Baseline = true)]
         public void Complete()
         {
             // Real Data with Optimizations - use dot product, use multiple threads, use AVX acceleration
-            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo768Dimensions, vectors?.TestVectors768Dimensions, false, true, string.Empty);
+            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.DbPediaVectors, false, true, string.Empty);
         }
     }
 }

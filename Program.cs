@@ -123,7 +123,7 @@ namespace VectorMathAIOptimizations
                 Console.WriteLine("AVX-512 available: " + Vector512.IsHardwareAccelerated.ToString());
 #endif
 
-                summary = BenchmarkRunner.Run<Jobs.Complete.Benchmark>();
+                summary = BenchmarkRunner.Run<Jobs.CompleteRealDataANN.Benchmark>();
             }
 
 

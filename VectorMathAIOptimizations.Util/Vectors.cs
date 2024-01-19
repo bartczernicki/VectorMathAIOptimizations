@@ -1,4 +1,6 @@
-﻿using HNSW.Net;
+﻿using BenchmarkDotNet.Columns;
+using HNSW.Net;
+using ParquetSharp;
 using System.Collections.Concurrent;
 using System.Numerics.Tensors;
 using System.Runtime.CompilerServices;
@@ -11,13 +13,17 @@ namespace VectorMathAIOptimizations.Util
 {
     public class Vectors
     {
+        private const string PARQUET_FILES_DIRECTORY = @"e:\data\dbpedia-entities-openai-1M1\";
+        private const string PARQUET_FILE_PATH_SUFFIX = @"*.parquet";
+
         // Fields
         public float[]? VectorToCompareTo768Dimensions { get; set; }
         public float[][]? TestVectors768Dimensions { get; set; }
         public float[]? VectorToCompareTo1536Dimensions { get; set; }
         public float[][]? TestVectors1536Dimensions { get; set; }
+        public float[][]? DbPediaVectors { get; set; }
 
-        public Vectors(int numberOfVectorsToCreate)
+        public Vectors(int numberOfVectorsToCreate, bool loadRealData = false)
         {
             // Generate float vectors that match dimension size of Open-Source and OpenAI Embeddings
             // MTEB Database: https://huggingface.co/spaces/mteb/leaderboard 
@@ -27,6 +33,11 @@ namespace VectorMathAIOptimizations.Util
             TestVectors768Dimensions = GenerateFloatVectors(numberOfVectorsToCreate, 768);
             VectorToCompareTo1536Dimensions = GenerateFloatVector(1536);
             TestVectors1536Dimensions = GenerateFloatVectors(numberOfVectorsToCreate, 1536);
+
+            if (loadRealData)
+            {
+                this.LoadRealVectorData();
+            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -52,12 +63,89 @@ namespace VectorMathAIOptimizations.Util
             return result;
         }
 
+        public void LoadRealVectorData()
+        {
+            ConcurrentBag<DbPedia> dataSetDbPedias = new ConcurrentBag<DbPedia>();
+            var recordCount = 0;
+
+            // https://huggingface.co/datasets/KShivendu/dbpedia-entities-openai-1M 
+            var parquet_files = Directory.GetFiles(PARQUET_FILES_DIRECTORY, PARQUET_FILE_PATH_SUFFIX);
+
+            var parallelOptions = new ParallelOptions
+            {
+                MaxDegreeOfParallelism = BenchmarkConfig.ProcessorsAvailableAt75Percent
+            };
+
+            // Load Parquet Files in parallel
+            Parallel.ForEach(parquet_files, parallelOptions, parquet_file =>
+            {
+                using (var parquetReader = new ParquetFileReader(parquet_file))
+                {
+                    Console.WriteLine($"File: {parquet_file}");
+
+                    // Read Metadata
+                    // This should be the same if you are reading the same type of parquet files
+                    int numColumns = parquetReader.FileMetaData.NumColumns;
+                    long numRows = parquetReader.FileMetaData.NumRows;
+                    int numRowGroups = parquetReader.FileMetaData.NumRowGroups;
+                    IReadOnlyDictionary<string, string> metadata = parquetReader.FileMetaData.KeyValueMetadata;
+
+                    SchemaDescriptor schema = parquetReader.FileMetaData.Schema;
+                    for (int columnIndex = 0; columnIndex < schema.NumColumns; ++columnIndex)
+                    {
+                        ColumnDescriptor column = schema.Column(columnIndex);
+                        string columnName = column.Name;
+                        var dataType = column.LogicalType;
+                        string dataTypeString = dataType.ToString();
+                    }
+
+                    for (int rowGroup = 0; rowGroup < parquetReader.FileMetaData.NumRowGroups; ++rowGroup)
+                    {
+                        using (var rowGroupReader = parquetReader.RowGroup(rowGroup))
+                        {
+                            var groupNumRows = (int)rowGroupReader.MetaData.NumRows;
+                            recordCount += groupNumRows; //Used to match processed and records inserted into ConcurrentBag
+
+                            var ids = rowGroupReader.Column(0).LogicalReader<string>().ReadAll(groupNumRows);
+                            var titles = rowGroupReader.Column(1).LogicalReader<string>().ReadAll(groupNumRows);
+                            var texts = rowGroupReader.Column(2).LogicalReader<string>().ReadAll(groupNumRows);
+                            var embeddings = rowGroupReader.Column(3).LogicalReader<double?[]>().ReadAll(groupNumRows);
+
+                            for (int i = 0; i < ids.Length; i++)
+                            {
+                                var item = new DbPedia
+                                {
+                                    Id = ids[i],
+                                    Title = titles[i],
+                                    Text = texts[i],
+                                    Embeddings = embeddings[i].Select(x => (float) x).ToList()
+                                };
+                                dataSetDbPedias.Add(item);
+                            }
+
+                            Console.WriteLine($"File: {parquet_file} - Processed: {groupNumRows} rows.");
+                        }
+                    }
+
+                    parquetReader.Close();
+                }
+            });
+
+            // Enforce order as this is important for the graph to be built correctly
+            var dataSetDbPediasOrdered = dataSetDbPedias.OrderBy(a => a.Id).ToList();
+            var DbPediaVectors = dataSetDbPediasOrdered.Select(x => x.Embeddings.ToArray()).ToArray();
+            Console.WriteLine($"Total Records: {recordCount} - Total Records Ordereddd: {DbPediaVectors.Length}");
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerable<VectorScore> TopMatchingVectors(ReadOnlySpan<float> vectorToCompareTo, ReadOnlySpan<float[]> vectors,
             bool useCosineSimilarity, bool multiThreaded, string avxType)
         {
             var results = new List<VectorScore>(vectors.Length);
             var numOfVectors = vectors.Length;
+
+            Console.WriteLine($"Vector Count: {numOfVectors}");
+
             var useDotNetAvx = (avxType == "NonHardware") ? false : true;
 
             if (multiThreaded)
