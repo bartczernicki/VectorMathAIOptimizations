@@ -90,9 +90,9 @@ The good news is that ANN graphs can also include the performance improvements m
 3) Building an ANN - HNSW graph with multi-threading & partitions
 
 ```
-| Method              | Mean        | 
-|-------------------- |------------:|-
-| ANN - 1             |     6647 s  | 
-| ANN - 2             |     4712 s  | 
-| ANN - 3             |     1252 s  | 
+| Method              | Mean        | Ratio       | 
+|-------------------- |------------:|------------:|-
+| ANN - 1 (baseline)  |     6647 s  |    baseline |
+| ANN - 2             |     4712 s  |     -29.11% |
+| ANN - 3             |     1252 s  |     -81.16% |
 ```
