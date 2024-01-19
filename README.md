@@ -6,7 +6,8 @@ Running the Application & Features:
 - Running the Application: Build the application in Visual Studio IDE, Select run in "Release" mode (required for benchmarking), select the benchmark number and click enter to run  
 - Tweaking or Configuring: Each benchmark is a seperate DLL (for seperation concerns), which can be configured individually (i.e. amount of vectors) or optimized seperately with compiler directives. This allows for individual reports to be viewed and analyzed
 - Real Data (1M vectors) - parquet files location: https://huggingface.co/datasets/KShivendu/dbpedia-entities-openai-1M   
-- Uses HNSW algorithm from Microsoft (fork optimized): https://github.com/bartczernicki/hnsw-sharp  
+- Uses HNSW algorithm from Microsoft (fork optimized): https://github.com/bartczernicki/hnsw-sharp
+- Uses BenchmarkDotNet for test harness: https://github.com/dotnet/BenchmarkDotNet/blob/master/README.md  
 ![Benchmark Process](https://github.com/bartczernicki/VectorEmbeddingsSimilarityOptimizations/blob/master/Images/BenchmarkProcess.gif)
 
 **1) Benchmark - VectorLinear**  
