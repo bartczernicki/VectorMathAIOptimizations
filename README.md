@@ -22,7 +22,7 @@ Goal of this benchmark is to showcase that a simple vector math approach will sc
 |                                       |                         |            |           |           |          |         | 
 | CosineSimilarityVectors1536Dimensions | 100000                  | 21.8083 ms | 0.1558 ms | 0.1457 ms | baseline |         | 
 ```
-**Benchmark - VectorCalculation**
+**Benchmark - VectorCalculation**  
 Goal of this benchmark is to show that if vectors are normalized, CosineSimilarity and DotProduct calculations will return the same answer with DotProduct being faster to calculate. The DotProduct formula simply requires less math, hencse is faster.
 ```
 | Method                                | NumberOfVectorsToCreate | Mean      | Error     | StdDev    | Ratio    | RatioSD | 
@@ -31,7 +31,7 @@ Goal of this benchmark is to show that if vectors are normalized, CosineSimilari
 | DotProductVectors1536Dimensions       | 1000                    | 0.0947 ms | 0.0000 ms | 0.0000 ms |     -21% |    0.1% |
 ```
 **Benchmark - VectorDimensions**  
-Goal of this benchmark is to show that the size of the dimensions of vectors matters for performance. OpenAI's ADAv2 model uses a dimension size of 1536, but there are models that output much smaller dimension sizes (768 for example).
+Goal of this benchmark is to show that the size of the dimensions of vectors matters for performance. OpenAI's ADAv2 model uses a dimension size of 1536, but there are models that output much smaller dimension sizes (768 for example). Look at the MTEB leaderboard for other embeddings models with smaller dimension sizes, but with good similarity accuracy: https://huggingface.co/spaces/mteb/leaderboard  
 ```
 | Method                                | NumberOfVectorsToCreate | Mean      | Error     | StdDev    | Ratio    | RatioSD | 
 |-------------------------------------- |------------------------ |----------:|----------:|----------:|---------:|--------:|-
