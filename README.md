@@ -47,6 +47,7 @@ Goal of this benchmark is to show that vector math calculations are independent,
 | CosineSimilarityVectors1536DimensionsMultithread | 100000                  |  6.523 ms | 0.0808 ms | 0.0756 ms |     -70% |    1.6% | 
 ```
 **Benchmark - VectorAVX**  
+Goal of this benchmark is to show that AVX hardware extensions (SIMD math) with the supporting software runtime can dramatically improve the performance of vector math operations. Newer AMD & Intel CPUs include more AVX-512 hardware intrinsics. For vector bath, this basically allows to process more math over floating point numbers in less CPU instrunctions. The other important intersection is that the software runtime needs to be able to interface with the AVX hardware extensions. .NET 8 LTS has added a new TensorPrimitives library with hardware backoff and multi-targeting that offers the performance of AVX-128, AVX-256, AVX-512 (if available) with non-hardware failover.
 ```
 | Method                                | NumberOfVectorsToCreate | AVXType     | Mean      | Error    | StdDev   | 
 |-------------------------------------- |------------------------ |------------ |----------:|---------:|---------:|-
