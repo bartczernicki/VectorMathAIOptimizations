@@ -24,6 +24,8 @@ Goal of this benchmark is to showcase that a simple vector math approach will sc
 ```
 **2) Benchmark - VectorCalculation**  
 Goal of this benchmark is to show that if vectors are normalized, CosineSimilarity and DotProduct calculations will return the same answer with DotProduct being faster to calculate. The DotProduct formula simply requires less math, hencse is faster.
+OpenAI Documentation appears to be incorrect: https://help.openai.com/en/articles/6824809-embeddings-frequently-asked-questions  
+You can pre-caculate & cache the denominator of the vectors in the search index: https://image3.slideserve.com/6563482/cosine-similarity-l.jpg  
 ```
 | Method                                | NumberOfVectorsToCreate | Mean      | Error     | StdDev    | Ratio    | RatioSD | 
 |-------------------------------------- |------------------------ |----------:|----------:|----------:|---------:|--------:|-
@@ -48,6 +50,8 @@ Goal of this benchmark is to show that vector math calculations are independent,
 ```
 **5) Benchmark - VectorAVX**  
 Goal of this benchmark is to show that AVX hardware extensions (SIMD math) with the supporting software runtime can dramatically improve the performance of vector math operations. Newer AMD & Intel CPUs include more AVX-512 hardware intrinsics. For vector bath, this basically allows to process more math over floating point numbers in less CPU instrunctions. The other important intersection is that the software runtime needs to be able to interface with the AVX hardware extensions. .NET 8 LTS has added a new TensorPrimitives library with hardware backoff and multi-targeting that offers the performance of AVX-128, AVX-256, AVX-512 (if available) with non-hardware failover.
+1) AVX Extensions: https://en.wikipedia.org/wiki/Advanced_Vector_Extensions
+2) .NET 8 Tensor Primitives: https://devblogs.microsoft.com/dotnet/announcing-dotnet-8-rc2/  
 ```
 | Method                                | NumberOfVectorsToCreate | AVXType     | Mean      | Error    | StdDev   | 
 |-------------------------------------- |------------------------ |------------ |----------:|---------:|---------:|-
