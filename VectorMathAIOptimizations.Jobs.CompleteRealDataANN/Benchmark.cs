@@ -26,20 +26,29 @@ namespace VectorMathAIOptimizations.Jobs.CompleteRealDataANN
         }
 
         [Benchmark(Baseline = true)]
+        public void Linear()
+        {
+            var vectorToSearch = vectors?.DbPediaVectors?[0]!;
+
+            // Real Data with NO Optimizations 
+            var results = Util.Vectors.TopMatchingVectors(vectorToSearch, vectors?.DbPediaVectors, true, false, "NonHardware");
+        }
+
+        [Benchmark]
         public void Complete()
         {
+            var vectorToSearch = vectors?.DbPediaVectors?[0]!;
+
             // Real Data with Optimizations - use dot product, use multiple threads, use AVX acceleration
-            var results = Util.Vectors.TopMatchingVectors(vectors?.VectorToCompareTo1536Dimensions, vectors?.DbPediaVectors, false, true, string.Empty);
+            var results = Util.Vectors.TopMatchingVectors(vectorToSearch, vectors?.DbPediaVectors, false, true, string.Empty);
         }
 
         [Benchmark]
         public void CompleteRealDataANN()
         {
-            // Real Data with Optimizations - use dot product, use multiple threads, use AVX acceleration
-            var vectorToSearch = vectors?.DbPediaVectors?[0];
-            //Console.WriteLine($"Vector to search: {vectorToSearch}");
+            // Real Data with Optimizations - Use ANN (Approximate Nearest Neighbor), undercover uses DotProduct, uses AVX acceleration
+            var vectorToSearch = vectors?.DbPediaVectors?[0]!;
             var results = vectors?.HNSWGraph?.KNNSearch(vectorToSearch, 50);
-            //Console.WriteLine($"Results: {results?.Count}");
         }
     }
 }

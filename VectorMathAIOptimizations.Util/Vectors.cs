@@ -210,7 +210,7 @@ namespace VectorMathAIOptimizations.Util
                      var singleVector = vectorsMemory.Slice(i, 1).Span[0].AsSpan();
                      var vectorToCompareToArray = vectorToCompareToMemory.Span;
 
-                     var similarityScore = useCosineSimilarity ? BenchmarkCosineSimilarity(vectorToCompareToArray, singleVector, useDotNetAvx, avxType) :
+                     var similarityScore = useCosineSimilarity ? CosineSimilarityWrapper(vectorToCompareToArray, singleVector, useDotNetAvx, avxType) :
                          TensorPrimitives.Dot(vectorToCompareToArray, singleVector);
 
                      resultsConcurrentBag.Add(new VectorScore { VectorIndex = i, SimilarityScore = similarityScore });
@@ -224,7 +224,7 @@ namespace VectorMathAIOptimizations.Util
                 {
                     ReadOnlySpan<float> singleVector = vectors.Slice(i, 1)[0];
 
-                    var similarityScore = useCosineSimilarity ? BenchmarkCosineSimilarity(vectorToCompareTo, singleVector, useDotNetAvx, avxType) :
+                    var similarityScore = useCosineSimilarity ? CosineSimilarityWrapper(vectorToCompareTo, singleVector, useDotNetAvx, avxType) :
                         TensorPrimitives.Dot(vectorToCompareTo, singleVector);
 
                     results.Add(new VectorScore { VectorIndex = i, SimilarityScore = similarityScore });
@@ -256,7 +256,7 @@ namespace VectorMathAIOptimizations.Util
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float BenchmarkCosineSimilarity(ReadOnlySpan<float> x, ReadOnlySpan<float> y, bool useDotNetFramework, string avxType)
+        public static float CosineSimilarityWrapper(ReadOnlySpan<float> x, ReadOnlySpan<float> y, bool useDotNetFramework, string avxType)
         {
             if (useDotNetFramework)
             {

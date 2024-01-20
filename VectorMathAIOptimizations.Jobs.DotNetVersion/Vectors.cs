@@ -84,7 +84,6 @@ namespace VectorMathAIOptimizations.Util.DotNetVersion
                      var singleVector = vectorsMemory.Slice(i, 1).Span[0].AsSpan();
                      var vectorToCompareToArray = vectorToCompareToMemory.Span;
 
-
                      var similarityScore = useCosineSimilarity ? TensorPrimitives.CosineSimilarity(vectorToCompareToArray, singleVector) :
                          TensorPrimitives.Dot(vectorToCompareToArray, singleVector);
 
