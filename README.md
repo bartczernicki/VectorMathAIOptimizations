@@ -100,7 +100,9 @@ HNSW implementation in C#: https://github.com/bartczernicki/hnsw-sharp
 | Complete            |    94.5493 ms | 1.8721 ms | 4.0299 ms |   -94.3% |    3.5% |      10.69 queries / sec| 
 | CompleteRealDataANN |     0.6453 ms | 0.0012 ms | 0.0011 ms |  -100.0% |    0.2% |   1,550.39 queries / sec|
 ```
-Approximate Nearest Neighbor (ANN) is fast at searching. For a 1M vector data set, it can scale to more than 1,000 searches/second! What is the tradeoff?  
+Approximate Nearest Neighbor (ANN) is fast at searching. For a 1M vector data set, it can scale to more than 1,550 searches/second! (Note: this number is local in-process and in-memory searhes; mimics local access in a in-memory databse. In an API services scenario, the internet/transport protocols/serialization of the messages will be lower this theoretical number).  
+
+What is the tradeoff?  
 1) Building an ANN graph is expensive and architectural considerations need to made for maintaining the graph/updating the records in real-time. These patterns have existed in database systems for quite some time. For example, SQL Server ColumnStore Indexes have delta rowgroups as buffers until the Columnstore index is rebuilt completely: https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview?view=sql-server-ver16#delta-rowgroup  
 2) The first word in ANN is **approximate**. This is meant to be convey that ANN is sacrificing perfect recall (missing some records being retrieved) for the dramatic speed increases. In certain scenarios, ANN cannot be used. For example, if you are doing a financial calculation extracting quantitative data from documents; this will require perfect recall for accurate calculations.
 
