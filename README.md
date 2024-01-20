@@ -10,6 +10,17 @@ Running the Application & Features:
 - Uses BenchmarkDotNet for test harness: https://github.com/dotnet/BenchmarkDotNet/blob/master/README.md  
 ![Benchmark Process](https://github.com/bartczernicki/VectorEmbeddingsSimilarityOptimizations/blob/master/Images/BenchmarkProcess.gif)
 
+Note: Benchmarks listed below have been run on the following specs:
+```
+BenchmarkDotNet v0.13.12, Windows 10 (10.0.20348.2227) (Hyper-V)
+AMD EPYC 9V33X, 2 CPU, 24 logical and 24 physical cores
+.NET SDK 8.0.200-preview.23624.5
+  [Host]     : .NET 8.0.0 (8.0.23.53103), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  Job-NQPSMG : .NET 8.0.0 (8.0.23.53103), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+
+Runtime=.NET 8.0  RunStrategy=Throughput  
+```
+
 **1) Benchmark - VectorLinear**  
 Goal of this benchmark is to showcase that a simple vector math approach will scale linearly. For example, 1000 vectors will take ~10x longer to process similarity math then 100 vectors. This performance degredation is acceptable for smaller vector views/indexes, but unworkable for larger sets.
 ```
@@ -80,10 +91,11 @@ In the previous 7 benchmarks used generated vector data and used a simple list/a
 Azure AI Search - HNSW Implementation: https://learn.microsoft.com/en-us/azure/search/vector-search-ranking  
 HNSW implementation in C#: https://github.com/bartczernicki/hnsw-sharp  
 ```
-| Method              | Mean        | Error     | StdDev    | Ratio    | RatioSD | 
-|-------------------- |------------:|----------:|----------:|---------:|--------:|-
-| Complete            | 107.2623 ms | 2.1008 ms | 4.0476 ms | baseline |         | 
-| CompleteRealDataANN |   0.6250 ms | 0.0015 ms | 0.0013 ms |   -99.4% |    4.8% | 
+| Method              | Mean          | Error     | StdDev    | Ratio    | RatioSD | 
+|-------------------- |--------------:|----------:|----------:|---------:|--------:|-
+| Linear              | 1,664.7444 ms | 0.3980 ms | 0.3723 ms | baseline |         | 
+| Complete            |    94.5493 ms | 1.8721 ms | 4.0299 ms |   -94.3% |    3.5% | 
+| CompleteRealDataANN |     0.6453 ms | 0.0012 ms | 0.0011 ms |  -100.0% |    0.2% | 
 ```
 Approximate Nearest Neighbor (ANN) is fast at searching. For a 1M vector data set, it can scale to more than 1,000 searches/second! What is the tradeoff?  
 1) Building an ANN graph is expensive and architectural considerations need to made for maintaining the graph/updating the records in real-time. These patterns have existed in database systems for quite some time. For example, SQL Server ColumnStore Indexes have delta rowgroups as buffers until the Columnstore index is rebuilt completely: https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview?view=sql-server-ver16#delta-rowgroup  
