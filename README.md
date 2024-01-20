@@ -82,7 +82,7 @@ Note: It is important to note only vector mathc is being benchmarked, in reality
 | CosineSimilarityVectors1536Dimensions | .NET 8.0 | 100000                  | 21.63 ms | 0.325 ms | 0.304 ms |      -5% |    1.6% |         -0% |
 ```
 **7) Benchmark - Complete**  
-The goal of this benchmark is to curate all of these benchmarks into single performance job. These performance improvements are additive and in totality can lead to fantaastic performance improvements.  
+The goal of this benchmark is to curate all of these benchmarks into single performance job. These performance improvements are additive and in totality can lead to fantaastic performance improvements.  The Complete benchmark includes: DotProduct math vs Cosine, 768 dimensions vs 1536, AVX-512 hardware, MultiThreaded math optimizations.
 ```
 | Method                                | NumberOfVectorsToCreate | Mean       | Error     | StdDev    | Ratio    | RatioSD | 
 |-------------------------------------- |------------------------ |-----------:|----------:|----------:|---------:|--------:|-
@@ -94,11 +94,11 @@ In the previous 7 benchmarks used generated vector data and used a simple list/a
 Azure AI Search - HNSW Implementation: https://learn.microsoft.com/en-us/azure/search/vector-search-ranking  
 HNSW implementation in C#: https://github.com/bartczernicki/hnsw-sharp  
 ```
-| Method              | Mean          | Error     | StdDev    | Ratio    | RatioSD | 
-|-------------------- |--------------:|----------:|----------:|---------:|--------:|-
-| Linear              | 1,664.7444 ms | 0.3980 ms | 0.3723 ms | baseline |         | 
-| Complete            |    94.5493 ms | 1.8721 ms | 4.0299 ms |   -94.3% |    3.5% | 
-| CompleteRealDataANN |     0.6453 ms | 0.0012 ms | 0.0011 ms |  -100.0% |    0.2% | 
+| Method              | Mean          | Error     | StdDev    | Ratio    | RatioSD | Search queries / second |
+|-------------------- |--------------:|----------:|----------:|---------:|--------:|------------------------:|-
+| Linear              | 1,664.7444 ms | 0.3980 ms | 0.3723 ms | baseline |         |       0.63 queries / sec|
+| Complete            |    94.5493 ms | 1.8721 ms | 4.0299 ms |   -94.3% |    3.5% |      10.69 queries / sec| 
+| CompleteRealDataANN |     0.6453 ms | 0.0012 ms | 0.0011 ms |  -100.0% |    0.2% |   1,550.39 queries / sec|
 ```
 Approximate Nearest Neighbor (ANN) is fast at searching. For a 1M vector data set, it can scale to more than 1,000 searches/second! What is the tradeoff?  
 1) Building an ANN graph is expensive and architectural considerations need to made for maintaining the graph/updating the records in real-time. These patterns have existed in database systems for quite some time. For example, SQL Server ColumnStore Indexes have delta rowgroups as buffers until the Columnstore index is rebuilt completely: https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview?view=sql-server-ver16#delta-rowgroup  
