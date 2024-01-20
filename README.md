@@ -72,7 +72,9 @@ Goal of this benchmark is to show that AVX hardware extensions (SIMD math) with 
 | CosineSimilarityVectors1536Dimensions | 100000                  | Vector512   |  20.97 ms | 0.143 ms | 0.127 ms | 
 ```  
 **6) Benchmark - DotNetVersion**  
-.NET continues to innovate with each yearly release. .NET 8 LTS includes numerous performance improvments, building upong the many .NET 6, 7 performance focused improvements. Therefore, a simple re-compile to the latest version can lead to performance improvements without any major changes. .NET 8 performance improvments: https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-8/  
+.NET continues to innovate with each yearly release. .NET 8 LTS includes numerous performance improvments, building upong the many .NET 6, 7 performance focused improvements. Therefore, a simple re-compile to the latest version can lead to performance improvements without any major changes.  
+.NET 8 performance improvments: https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-8/  
+Note: It is important to note only vector mathc is being benchmarked, in reality many common .NET 8 improvements for (AOT for example, an Azure Function cold start ~650ms -> 50ms or JSON serialization performance) all will cascade holistically into the entire AI application.
 ```
 | Method                                | Runtime  | NumberOfVectorsToCreate | Mean     | Error    | StdDev   | Ratio    | RatioSD | Alloc Ratio |
 |-------------------------------------- |--------- |------------------------ |---------:|---------:|---------:|---------:|--------:|------------:|
