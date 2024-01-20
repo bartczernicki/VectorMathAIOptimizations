@@ -22,7 +22,7 @@ Runtime=.NET 8.0  RunStrategy=Throughput
 ```
 
 **1) Benchmark - VectorLinear**  
-Goal of this benchmark is to showcase that a simple vector math approach will scale linearly or monotonically (fancy word for linear with a "bend") depending on the CPU architecture. For example, 1,000 vectors will take ~10x longer to process similarity math then 100 vectors; and 10,000 vectors will take ~10x longer than 1,000 vectors. This performance degredation is acceptable for smaller vector views/indexes, but benchmarks below will show that linear scale is unworkable for larger sets.
+Goal of this benchmark is to showcase that a simple vector math approach will scale linearly or monotonically (fancy word for linear with a "bend") depending on the CPU architecture. For example, 1,000 vectors will take ~10x longer to process similarity math then 100 vectors; and 10,000 vectors will take ~10x longer than 1,000 vectors. This performance degredation is acceptable for smaller vector views/indexes, but benchmarks below will show that linear scale is unworkable for larger vector sets.
 ```
 | Method                                | NumberOfVectorsToCreate | Mean       | Error     | StdDev    | Ratio    | RatioSD | 
 |-------------------------------------- |------------------------ |-----------:|----------:|----------:|---------:|--------:|-
