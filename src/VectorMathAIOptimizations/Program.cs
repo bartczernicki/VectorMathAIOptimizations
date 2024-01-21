@@ -43,7 +43,7 @@ namespace VectorMathAIOptimizations
                 Console.WriteLine("5) AVX Hardware Benchmark - Compares performance of AVX hardware acceleration vs no-acceleration.");
                 Console.WriteLine("6) .NET Version Benchmark - Compares Different .NET versions: 6.0 vs 8.0.");
                 Console.WriteLine("7) Complete Benchmark - Compares performance of all best practices combined.");
-                Console.WriteLine("...");
+                Console.WriteLine("... #8 is WIP, has requirements not documented yet");
                 Console.WriteLine("8) Complete Real Data & ANN Benchmark - Using Real Data (1M Vectors) & ANN Graph Optimizations.");
 
                 var insertedText = Console.ReadLine() ?? string.Empty;

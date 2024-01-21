@@ -70,15 +70,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="VectorMathAIOptimizations.Jobs.CompleteRealDataANN\VectorMathAIOptimizations.Jobs.CompleteRealDataANN.csproj" />
-    <ProjectReference Include="VectorMathAIOptimizations.Jobs.Complete\VectorMathAIOptimizations.Jobs.Complete.csproj" />
-    <ProjectReference Include="VectorMathAIOptimizations.Jobs.DotNetVersion\VectorMathAIOptimizations.Jobs.DotNetVersion.csproj" />
-    <ProjectReference Include="VectorMathAIOptimizations.Jobs.VectorAVX\VectorMathAIOptimizations.Jobs.VectorAVX.csproj" />
-    <ProjectReference Include="VectorMathAIOptimizations.Jobs.VectorCalculation\VectorMathAIOptimizations.Jobs.VectorCalculation.csproj" />
-    <ProjectReference Include="VectorMathAIOptimizations.Jobs.VectorDimensions\VectorMathAIOptimizations.Jobs.VectorDimensions.csproj" />
-    <ProjectReference Include="VectorMathAIOptimizations.Jobs.VectorLinear\VectorMathAIOptimizations.Jobs.VectorLinear.csproj" />
-    <ProjectReference Include="VectorMathAIOptimizations.Jobs.VectorMultithread\VectorMathAIOptimizations.Jobs.VectorMultithread.csproj" />
-    <ProjectReference Include="VectorMathAIOptimizations.Util\VectorMathAIOptimizations.Util.csproj" />
+    <ProjectReference Include="..\VectorMathAIOptimizations.Jobs.CompleteRealDataANN\VectorMathAIOptimizations.Jobs.CompleteRealDataANN.csproj" />
+    <ProjectReference Include="..\VectorMathAIOptimizations.Jobs.Complete\VectorMathAIOptimizations.Jobs.Complete.csproj" />
+    <ProjectReference Include="..\VectorMathAIOptimizations.Jobs.DotNetVersion\VectorMathAIOptimizations.Jobs.DotNetVersion.csproj" />
+    <ProjectReference Include="..\VectorMathAIOptimizations.Jobs.VectorAVX\VectorMathAIOptimizations.Jobs.VectorAVX.csproj" />
+    <ProjectReference Include="..\VectorMathAIOptimizations.Jobs.VectorCalculation\VectorMathAIOptimizations.Jobs.VectorCalculation.csproj" />
+    <ProjectReference Include="..\VectorMathAIOptimizations.Jobs.VectorDimensions\VectorMathAIOptimizations.Jobs.VectorDimensions.csproj" />
+    <ProjectReference Include="..\VectorMathAIOptimizations.Jobs.VectorLinear\VectorMathAIOptimizations.Jobs.VectorLinear.csproj" />
+    <ProjectReference Include="..\VectorMathAIOptimizations.Jobs.VectorMultithread\VectorMathAIOptimizations.Jobs.VectorMultithread.csproj" />
+    <ProjectReference Include="..\VectorMathAIOptimizations.Util\VectorMathAIOptimizations.Util.csproj" />
   </ItemGroup>
 
 </Project>
