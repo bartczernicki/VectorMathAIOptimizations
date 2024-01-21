@@ -128,7 +128,7 @@ Vector math is expensive, but you don't need a cluster of GPUs to scale to produ
 - TechEmpower Benchmarks - .NET (C#) is Fast, Balancing performance & productivity:  
   https://www.techempower.com/benchmarks/#section=test&runid=da8306a2-d1d8-4bd3-95d4-59d8cd7047af&hw=ph&test=fortune  
 - Since .NET 6.x version, it has been included in Linux package management directly (Ubuntu)  
-- Stability.ai has chosen to use .NET (C#) for their products over Python:
+- Stability.ai has chosen to use .NET (C#) for their products over Python:  
   https://github.com/Stability-AI/StableSwarmUI
-- .NET 8 (loading 1 billion rows with analytics, currently faster than Java/Rust fastest):
+- .NET 8 (loading 1 billion rows with analytics, currently faster than Java/Rust fastest):  
   https://hotforknowledge.com/2024/01/13/1brc-in-dotnet-among-fastest-on-linux-my-optimization-journey/  
