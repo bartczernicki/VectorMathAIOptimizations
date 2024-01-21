@@ -8,7 +8,7 @@ Running the Application & Features:
 - Real Data (1M vectors) - parquet files location: https://huggingface.co/datasets/KShivendu/dbpedia-entities-openai-1M   
 - Uses HNSW algorithm from Microsoft (fork optimized): https://github.com/bartczernicki/hnsw-sharp
 - Uses BenchmarkDotNet for test harness: https://github.com/dotnet/BenchmarkDotNet/blob/master/README.md  
-![Benchmark Process](https://github.com/bartczernicki/VectorEmbeddingsSimilarityOptimizations/blob/master/Images/BenchmarkProcess.gif)
+![Benchmark Process](https://github.com/bartczernicki/VectorEmbeddingsSimilarityOptimizations/blob/master/Images/VectorMathOptimizationsMainScreen.png)
 
 Note: Benchmarks listed below have been run on the following specs:
 ```
