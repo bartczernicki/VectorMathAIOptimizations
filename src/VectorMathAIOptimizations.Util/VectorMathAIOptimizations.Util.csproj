@@ -16,7 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\hnsw-sharp\Src\HNSW.Net\HNSW.Net.csproj" />
+    <Reference Include="HNSW.Net">
+      <HintPath>..\Assemblies\HNSW.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

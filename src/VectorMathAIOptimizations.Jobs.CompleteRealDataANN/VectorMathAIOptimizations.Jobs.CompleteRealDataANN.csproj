@@ -10,4 +10,11 @@
     <ProjectReference Include="..\VectorMathAIOptimizations.Util\VectorMathAIOptimizations.Util.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="HNSW.Net">
+      <HintPath>..\Assemblies\HNSW.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+
 </Project>

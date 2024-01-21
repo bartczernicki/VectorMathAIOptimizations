@@ -23,8 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorMathAIOptimizations.J
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VectorMathAIOptimizations.Jobs.CompleteRealDataANN", "VectorMathAIOptimizations.Jobs.CompleteRealDataANN\VectorMathAIOptimizations.Jobs.CompleteRealDataANN.csproj", "{37A45B6D-BE46-4CCD-A0A5-27B6AE555E12}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HNSW.Net", "..\..\hnsw-sharp\Src\HNSW.Net\HNSW.Net.csproj", "{D3C6034B-A9E2-4D14-877E-AE3DAEBF3D97}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,14 +111,6 @@ Global
 		{37A45B6D-BE46-4CCD-A0A5-27B6AE555E12}.Release|Any CPU.Build.0 = Release|Any CPU
 		{37A45B6D-BE46-4CCD-A0A5-27B6AE555E12}.Release|x64.ActiveCfg = Release|Any CPU
 		{37A45B6D-BE46-4CCD-A0A5-27B6AE555E12}.Release|x64.Build.0 = Release|Any CPU
-		{D3C6034B-A9E2-4D14-877E-AE3DAEBF3D97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3C6034B-A9E2-4D14-877E-AE3DAEBF3D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3C6034B-A9E2-4D14-877E-AE3DAEBF3D97}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D3C6034B-A9E2-4D14-877E-AE3DAEBF3D97}.Debug|x64.Build.0 = Debug|Any CPU
-		{D3C6034B-A9E2-4D14-877E-AE3DAEBF3D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3C6034B-A9E2-4D14-877E-AE3DAEBF3D97}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3C6034B-A9E2-4D14-877E-AE3DAEBF3D97}.Release|x64.ActiveCfg = Release|Any CPU
-		{D3C6034B-A9E2-4D14-877E-AE3DAEBF3D97}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
