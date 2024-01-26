@@ -45,7 +45,7 @@ You can pre-caculate & cache the denominator of the vectors in the search index,
 | DotProductVectors1536Dimensions       | 1000                    | 0.0947 ms | 0.0000 ms | 0.0000 ms |     -21% |    0.1% |
 ```
 ## 3) Benchmark - VectorDimensions   
-Goal of this benchmark is to show that the size of the dimensions of vectors matters for performance. OpenAI's ADAv2 model uses a dimension size of 1536, but there are models that output much smaller dimension sizes (768 for example), with better performance! Look at the MTEB leaderboard for other embeddings models with smaller dimension sizes, but with potentially very good similarity accuracy: https://huggingface.co/spaces/mteb/leaderboard  
+Goal of this benchmark is to show that the size of the dimensions of vectors matters for performance. OpenAI's ADAv2 model uses a dimension size of 1536, with the ADAv3 models the dimension size can be as low 256 vectors or as high as 3,072 vectors. Furthermore, there are open-source models that output much smaller dimension sizes (768 for example), with better performance! Look at the MTEB leaderboard for other embeddings models with smaller dimension sizes, but with potentially very good similarity accuracy: https://huggingface.co/spaces/mteb/leaderboard  
 Note: These additional models can be used to "ensemble" embeddings results for improved results  
 ```
 | Method                                | NumberOfVectorsToCreate | Mean      | Error     | StdDev    | Ratio    | RatioSD | 
