@@ -50,8 +50,10 @@ Note: These additional models can be used to "ensemble" embeddings results for i
 ```
 | Method                                | NumberOfVectorsToCreate | Mean      | Error     | StdDev    | Ratio    | RatioSD | 
 |-------------------------------------- |------------------------ |----------:|----------:|----------:|---------:|--------:|-
-| CosineSimilarityVectors1536Dimensions | 1000                    | 0.1196 ms | 0.0004 ms | 0.0004 ms | baseline |         | 
-| CosineSimilarityVectors768Dimensions  | 1000                    | 0.0648 ms | 0.0001 ms | 0.0001 ms |     -46% |    0.4% | 
+| CosineSimilarityVectors3072Dimensions | 1000                    | 0.2291 ms | 0.0002 ms | 0.0002 ms |     +85% |    0.1% | 
+| CosineSimilarityVectors1536Dimensions | 1000                    | 0.1239 ms | 0.0001 ms | 0.0001 ms | baseline |         | 
+| CosineSimilarityVectors768Dimensions  | 1000                    | 0.0646 ms | 0.0001 ms | 0.0001 ms |     -48% |    0.1% | 
+| CosineSimilarityVectors256Dimensions  | 1000                    | 0.0299 ms | 0.0000 ms | 0.0000 ms |     -76% |    0.2% | 
 ```
 ## 4) Benchmark - Multithread  
 Goal of this benchmark is to show that vector math calculations are independent, which means they are embarassingly parallelizable. Leveraging multithreading on large vector sets can improve the performance dramatically of vector search.  
