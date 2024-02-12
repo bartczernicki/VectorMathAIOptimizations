@@ -3,6 +3,7 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Exporters;
+using BenchmarkDotNet.Attributes;
 
 namespace VectorMathAIOptimizations.Util
 {
